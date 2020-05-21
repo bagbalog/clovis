@@ -1,6 +1,6 @@
 function Clovis(){
 	var keys=Object.keys(window);
-    	keys.sort()
+    keys.sort()
 	var allUsableVariables = {};
 	/*Stuff we never want to see based on the variable name*/
 	var blackListedKeys = ["Back", "Bounce", "Circ", "Elastic", "Expo", "Modernizr", "ShadyCSS", "Sine", "WebComponents", "WindowResize", "YT", "YTConfig", "allCookiesArray", "allCookiesObject", "allUsableVariables", "angular", "angularCacheModuleName", "applicationCache", "c", "com", "countFunctions", "countFunctionsEnum", "crypto", "devicePixelRatio", "document", "dT_", "frames", "history", "html5", "i", "innerHeight", "innerWidth", "isSecureContext", "length", "locationbar", "menubar", "ng", "ngMaterial", "outerHeight", "outerWidth", "pageXOffset", "pageYOffset", "parent", "personalbar", "screen", "screenLeft", "screenTop", "screenX", "screenY", "scrollX", "scrollY", "scrollbar", "scrollbars", "self", "speechSynthesis", "statusbar", "styleMedia", "toolbar", "top", "visualViewport", "visualViewport", "webkitStorageInfo", "x", "yt", "ytEventsEventsCounter", "ytPubsubPubsubInstance"];
