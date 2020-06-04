@@ -1,39 +1,5 @@
 var whiteListedKeys = [];
 
-function whiteListPrompt(){
-    console.log('%c General whitelisting terms: ' + ["cart","device","digitalData"], colorCodeMain);
-    var whiteListPrompt = prompt("What terms do you want to search the variables for specifically? (Separated by comma) \n\n An example has been logged to the console for some terms we generally recommend, depending on customer.");
-
-    if(whiteListPrompt.length > 0){
-       if(whiteListPrompt.indexOf(',') !== -1){
-            tempWhiteListedKeys = whiteListPrompt.split(',');
-            console.log(tempWhiteListedKeys)
-            for(i=0;i<tempWhiteListedKeys.length; i++){
-                if(tempWhiteListedKeys[i].length > 0){
-                    whiteListedKeys.push(tempWhiteListedKeys[i])
-                }
-            }
-
-       } else {
-            whiteListedKeys.push(whiteListPrompt);
-       }
-    }
-}
-whiteListPrompt();
-
-var globalIterationValue = 5;
-
-function iterationLevelsPrompt(){
-    var iterationLevels = prompt("Enter a value between 1 and 10 for how many many levels deep into object structures do you want to iterate through. This process looks for whitelist terms, removes empty strings, null values, undefined values, empty objects, functions, etc. \n\n Normally 3 to 5 is sufficient. The higher the value, the longer this will take to process and more matches it can potentially find for whitelisting. Depending on how many globally scoped variables are on the site, this could take several minutes to complete.");
-    var iterationValue = parseInt(iterationLevels)
-    if(typeof iterationValue === 'number' && iterationValue <= 10 && iterationValue >= 1){
-        globalIterationValue = iterationValue;
-    }
-}
-iterationLevelsPrompt();
-
-var blackListedKeys = ["Back", "Bounce", "Circ", "Elastic", "Expo", "Modernizr", "ShadyCSS", "Sine", "WebComponents", "WindowResize", "YT", "YTConfig", "allCookiesArray", "allCookiesObj", "allCookiesObject", "angular", "angularCacheModuleName", "blackListedKeys", "chrome", "colorCodeCookies", "colorCodeHighlight", "colorCodeMain", "colorCodeMaster", "dT_", "devicePixelRatio", "frames", "globalIterationValue", "grabCookies", "history", "html5", "innerHeight", "innerWidth", "isSecureContext", "length", "locationbar", "masterObject", "masterObject", "menubar", "ng", "ngMaterial", "outerHeight", "outerWidth", "pageXOffset", "pageYOffset", "parent", "personalbar", "ruxitagent", "screen", "screenLeft", "screenTop", "screenX", "screenY", "scrollX", "scrollY", "scrollbar", "scrollbars", "self", "speechSynthesis", "statusbar", "styleMedia", "toolbar", "top", "visualViewport", "visualViewport", "webkitStorageInfo", "whiteListedKeys", "yt", "ytEventsEventsCounter", "ytPubsubPubsubInstance","globalIterationValue"];
-
 var colorCodeMain = [
     'background: linear-gradient(#73be28, #3bb24a)'
     , 'border: 1px solid #3E0E02'
@@ -94,6 +60,48 @@ var colorCodeFinish = [
     , 'font-weight: bold'
     , 'padding: 0px 100px 0px 100px'
 ].join(';');
+
+function whiteListPrompt(){
+    console.log('')
+    console.log('')
+    console.log('')
+    console.log('')
+    console.log('')
+    console.log('')
+
+    console.log('%c General whitelisting terms: ' + ["cart","device","digitalData"], colorCodeMain);
+    var whiteListPrompt = prompt("What terms do you want to search the variables for specifically? (Separated by comma) \n\n An example has been logged to the console for some terms we generally recommend, depending on customer.");
+
+    if(whiteListPrompt.length > 0){
+       if(whiteListPrompt.indexOf(',') !== -1){
+            tempWhiteListedKeys = whiteListPrompt.split(',');
+            console.log(tempWhiteListedKeys)
+            for(i=0;i<tempWhiteListedKeys.length; i++){
+                if(tempWhiteListedKeys[i].length > 0){
+                    whiteListedKeys.push(tempWhiteListedKeys[i])
+                }
+            }
+
+       } else {
+            whiteListedKeys.push(whiteListPrompt);
+       }
+    }
+}
+whiteListPrompt();
+
+var globalIterationValue = 5;
+
+function iterationLevelsPrompt(){
+    var iterationLevels = prompt("Enter a value between 1 and 10 for how many many levels deep into object structures do you want to iterate through. This process looks for whitelist terms, removes empty strings, null values, undefined values, empty objects, functions, etc. \n\n Normally 3 to 5 is sufficient. The higher the value, the longer this will take to process and more matches it can potentially find for whitelisting. Depending on how many globally scoped variables are on the site, this could take several minutes to complete.");
+    var iterationValue = parseInt(iterationLevels)
+    if(typeof iterationValue === 'number' && iterationValue <= 10 && iterationValue >= 1){
+        globalIterationValue = iterationValue;
+    }
+}
+iterationLevelsPrompt();
+
+var blackListedKeys = ["Back", "Bounce", "Circ", "Elastic", "Expo", "Modernizr", "ShadyCSS", "Sine", "WebComponents", "WindowResize", "YT", "YTConfig", "allCookiesArray", "allCookiesObj", "allCookiesObject", "angular", "angularCacheModuleName", "blackListedKeys", "chrome", "colorCodeCookies", "colorCodeHighlight", "colorCodeMain", "colorCodeMaster", "dT_", "devicePixelRatio", "frames", "globalIterationValue", "grabCookies", "history", "html5", "innerHeight", "innerWidth", "isSecureContext", "length", "locationbar", "masterObject", "masterObject", "menubar", "ng", "ngMaterial", "outerHeight", "outerWidth", "pageXOffset", "pageYOffset", "parent", "personalbar", "ruxitagent", "screen", "screenLeft", "screenTop", "screenX", "screenY", "scrollX", "scrollY", "scrollbar", "scrollbars", "self", "speechSynthesis", "statusbar", "styleMedia", "toolbar", "top", "visualViewport", "visualViewport", "webkitStorageInfo", "whiteListedKeys", "yt", "ytEventsEventsCounter", "ytPubsubPubsubInstance","globalIterationValue"];
+
 
 console.clear()
 
