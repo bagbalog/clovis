@@ -74,8 +74,8 @@ function whiteListPrompt(){
 
     if(whiteListPrompt.length > 0){
        if(whiteListPrompt.indexOf(',') !== -1){
-            tempWhiteListedKeys = whiteListPrompt.split(',');
-            console.log(tempWhiteListedKeys)
+            let strippedWLKeys = whiteListPrompt.replace(/ /g,'')
+            let tempWhiteListedKeys = strippedWLKeys.split(',');
             for(i=0;i<tempWhiteListedKeys.length; i++){
                 if(tempWhiteListedKeys[i].length > 0){
                     whiteListedKeys.push(tempWhiteListedKeys[i])
@@ -83,6 +83,7 @@ function whiteListPrompt(){
             }
 
        } else {
+            whiteListPrompt = whiteListPrompt.replace(/ /g,'')
             whiteListedKeys.push(whiteListPrompt);
        }
     }
@@ -100,7 +101,7 @@ function iterationLevelsPrompt(){
 }
 iterationLevelsPrompt();
 
-var blackListedKeys = ["Back", "Bounce", "Circ", "Elastic", "Expo", "Modernizr", "ShadyCSS", "Sine", "WebComponents", "WindowResize", "YT", "YTConfig", "allCookiesArray", "allCookiesObj", "allCookiesObject", "angular", "angularCacheModuleName", "blackListedKeys", "chrome", "colorCodeCookies", "colorCodeHighlight", "colorCodeMain", "colorCodeMaster", "dT_", "devicePixelRatio", "frames", "globalIterationValue", "grabCookies", "history", "html5", "innerHeight", "innerWidth", "isSecureContext", "length", "locationbar", "masterObject", "masterObject", "menubar", "ng", "ngMaterial", "outerHeight", "outerWidth", "pageXOffset", "pageYOffset", "parent", "personalbar", "ruxitagent", "screen", "screenLeft", "screenTop", "screenX", "screenY", "scrollX", "scrollY", "scrollbar", "scrollbars", "self", "speechSynthesis", "statusbar", "styleMedia", "toolbar", "top", "visualViewport", "visualViewport", "webkitStorageInfo", "whiteListedKeys", "yt", "ytEventsEventsCounter", "ytPubsubPubsubInstance","globalIterationValue"];
+var blackListedKeys = ["Back", "Bounce", "Circ", "Elastic", "Expo", "Modernizr", "ShadyCSS", "Sine", "WebComponents", "WindowResize", "YT", "YTConfig", "allCookiesArray", "allCookiesObj", "allCookiesObject", "angular", "angularCacheModuleName", "blackListedKeys", "chrome", "colorCodeCookies", "colorCodeHighlight", "colorCodeMain", "colorCodeMaster", "dT_", "devicePixelRatio", "frames", "globalIterationValue", "grabCookies", "history", "html5", "innerHeight", "innerWidth", "isSecureContext", "length", "locationbar", "masterObject", "masterObject", "menubar", "ng", "ngMaterial", "outerHeight", "outerWidth", "pageXOffset", "pageYOffset", "parent", "personalbar", "ruxitagent", "screen", "screenLeft", "screenTop", "screenX", "screenY", "scrollX", "scrollY", "scrollbar", "scrollbars", "self", "speechSynthesis", "statusbar", "styleMedia", "toolbar", "top", "visualViewport", "visualViewport", "w", "webkitStorageInfo", "whiteListedKeys", "yt", "ytEventsEventsCounter", "ytPubsubPubsubInstance","globalIterationValue"];
 
 
 console.clear()
@@ -111,7 +112,7 @@ let iterationCopy10 = (src,parent1,parent2,parent3,parent4,parent5,parent6,paren
     try{
         for (let prop in src) {
             if(blackListedKeys.indexOf(prop) == -1 && blackListedKeys.indexOf(src[prop]) == -1){
-                if (srcKeys.indexOf(prop) > -1) {
+                if (srcKeys.indexOf(prop)>-1 && prop!==parent1 && prop!==parent2 && prop!==parent3 && prop!==parent4 && prop!==parent5 && prop!==parent6 && prop!==parent7 && prop!==parent8 && prop!==parent9) {
 
                     if(typeof src[prop] === 'function'){
                         continue;
@@ -173,7 +174,7 @@ let iterationCopy9 = (src,parent1,parent2,parent3,parent4,parent5,parent6,parent
     try{
         for (let prop in src) {
             if(blackListedKeys.indexOf(prop) == -1 && blackListedKeys.indexOf(src[prop]) == -1){
-                if (srcKeys.indexOf(prop) > -1) {
+                if (srcKeys.indexOf(prop)>-1 && prop!==parent1 && prop!==parent2 && prop!==parent3 && prop!==parent4 && prop!==parent5 && prop!==parent6 && prop!==parent7 && prop!==parent8){
 
                     if(typeof src[prop] === 'function'){
                         continue;
@@ -240,7 +241,7 @@ let iterationCopy8 = (src,parent1,parent2,parent3,parent4,parent5,parent6,parent
     try{
         for (let prop in src) {
             if(blackListedKeys.indexOf(prop) == -1 && blackListedKeys.indexOf(src[prop]) == -1){
-                if (srcKeys.indexOf(prop) > -1) {
+                if (srcKeys.indexOf(prop)>-1 && prop!==parent1 && prop!==parent2 && prop!==parent3 && prop!==parent4 && prop!==parent5 && prop!==parent6 && prop!==parent7){
 
                     if(typeof src[prop] === 'function'){
                         continue;
@@ -306,7 +307,7 @@ let iterationCopy7 = (src,parent1,parent2,parent3,parent4,parent5,parent6) => {
     try{
         for (let prop in src) {
             if(blackListedKeys.indexOf(prop) == -1 && blackListedKeys.indexOf(src[prop]) == -1){
-                if (srcKeys.indexOf(prop) > -1) {
+                if (srcKeys.indexOf(prop)>-1 && prop!==parent1 && prop!==parent2 && prop!==parent3 && prop!==parent4 && prop!==parent5 && prop!==parent6){
 
                     if(typeof src[prop] === 'function'){
                         continue;
@@ -372,7 +373,7 @@ let iterationCopy6 = (src,parent1,parent2,parent3,parent4,parent5) => {
     try{
         for (let prop in src) {
             if(blackListedKeys.indexOf(prop) == -1 && blackListedKeys.indexOf(src[prop]) == -1){
-                if (srcKeys.indexOf(prop) > -1) {
+                if (srcKeys.indexOf(prop)>-1 && prop!==parent1 && prop!==parent2 && prop!==parent3 && prop!==parent4 && prop!==parent5){
 
                     if(typeof src[prop] === 'function'){
                         continue;
@@ -438,7 +439,7 @@ let iterationCopy5 = (src,parent1,parent2,parent3,parent4) => {
     try{
         for (let prop in src) {
             if(blackListedKeys.indexOf(prop) == -1 && blackListedKeys.indexOf(src[prop]) == -1){
-                if (srcKeys.indexOf(prop) > -1) {
+                if (srcKeys.indexOf(prop)>-1 && prop!==parent1 && prop!==parent2 && prop!==parent3 && prop!==parent4){
 
                     if(typeof src[prop] === 'function'){
                         continue;
@@ -506,7 +507,7 @@ let iterationCopy4 = (src,parent1,parent2,parent3) => {
     try{
         for (let prop in src) {
             if(blackListedKeys.indexOf(prop) == -1 && blackListedKeys.indexOf(src[prop]) == -1){
-                if (srcKeys.indexOf(prop) > -1) {
+                if (srcKeys.indexOf(prop)>-1 && prop!==parent1 && prop!==parent2 && prop!==parent3){
                     if(typeof src[prop] === 'function'){
                         continue;
                     }
@@ -574,7 +575,7 @@ let iterationCopy3 = (src, parent1, parent2) => {
     try{
         for (let prop in src) {
             if(blackListedKeys.indexOf(prop) == -1 && blackListedKeys.indexOf(src[prop]) == -1){
-                if (srcKeys.indexOf(prop) > -1) {
+                if (srcKeys.indexOf(prop)>-1 && prop!==parent1 && prop!==parent2){
                     if(typeof src[prop] === 'function'){
                         continue;
                     }
@@ -642,7 +643,7 @@ let iterationCopy2 = (src, parent1) => {
     try{
         for (let prop in src) {
             if(blackListedKeys.indexOf(prop) == -1 && blackListedKeys.indexOf(src[prop]) == -1){
-                if (srcKeys.indexOf(prop) > -1) {
+                if (srcKeys.indexOf(prop)>-1 && prop!==parent1){
 
                     if(typeof src[prop] === 'function'){
                         continue;
@@ -711,55 +712,52 @@ let iterationCopy1 = (src) => {
     try{
         for(let prop in src) {
             if(blackListedKeys.indexOf(prop) == -1 && blackListedKeys.indexOf(src[prop]) == -1){
-                if (srcKeys.indexOf(prop) > -1) {
+                if(typeof src[prop] === 'function'){
+                    continue;
+                }
 
-                    if(typeof src[prop] === 'function'){
-                        continue;
-                    }
+                if(typeof src[prop] === 'boolean' || typeof src[prop] === 'number'){
+                    target[prop] = src[prop];
+                }
 
-                    if(typeof src[prop] === 'boolean' || typeof src[prop] === 'number'){
+
+                if(typeof src[prop] === 'object' && src[prop] !== undefined && src[prop] !== null){
+                    /*Get rid of any HTML elements or Arrays and boil it down to just Objects*/
+                    if(src[prop] instanceof HTMLElement === false && Array.isArray(src[prop]) === false){
+                        if(src[prop] !== src[prop].parent){
+                            if(globalIterationValue > 1){
+                                if(iterationCopy2(src[prop]) !== undefined){
+                                    target[prop] = iterationCopy2(src[prop], prop)
+                                }
+                            } else {
+                                target[prop] = src[prop]
+                            }
+                            if(target[prop] === undefined){
+                                delete target[prop]
+                            }
+                        }
+                    }            
+                }
+
+                if(typeof src[prop] === 'string'){
+                    if(src[prop].length > 0){
                         target[prop] = src[prop];
                     }
+                }
 
-
-                    if(typeof src[prop] === 'object' && src[prop] !== undefined && src[prop] !== null){
-                        /*Get rid of any HTML elements or Arrays and boil it down to just Objects*/
-                        if(src[prop] instanceof HTMLElement === false && Array.isArray(src[prop]) === false){
-                            if(src[prop] !== src[prop].parent){
-                                if(globalIterationValue > 1){
-                                    if(iterationCopy2(src[prop]) !== undefined){
-                                        target[prop] = iterationCopy2(src[prop], prop)
-                                    }
-                                } else {
-                                    target[prop] = src[prop]
-                                }
-                                if(target[prop] === undefined){
-                                    delete target[prop]
-                                }
-                            }
-                        }            
-                    }
-
-                    if(typeof src[prop] === 'string'){
-                        if(src[prop].length > 0){
-                            target[prop] = src[prop];
+        
+                for(var i=0; i<whiteListedKeys.length; i++){
+                    //console.log(whiteListedKeys[i])
+                    if(typeof whiteListedKeys[i] === 'string'){
+                        if(prop.toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1 && typeof src[prop] !== 'function' &&  src[prop] !== undefined && src[prop] !== null && blackListedKeys.indexOf(prop) == -1){
+                            console.log('%c Found the whitelisted value: %c ' + whiteListedKeys[i] + ' %c at %c window.' + prop,colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight);
+                            console.log(target);
                         }
-                    }
 
-            
-                    for(var i=0; i<whiteListedKeys.length; i++){
-                        //console.log(whiteListedKeys[i])
-                        if(typeof whiteListedKeys[i] === 'string'){
-                            if(prop.toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1 && typeof src[prop] !== 'function' &&  src[prop] !== undefined && src[prop] !== null && blackListedKeys.indexOf(prop) == -1){
+                        if(src[prop] && typeof src[prop] === 'string'){
+                            if(src[prop].toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
                                 console.log('%c Found the whitelisted value: %c ' + whiteListedKeys[i] + ' %c at %c window.' + prop,colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight);
                                 console.log(target);
-                            }
-
-                            if(src[prop] && typeof src[prop] === 'string'){
-                                if(src[prop].toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
-                                    console.log('%c Found the whitelisted value: %c ' + whiteListedKeys[i] + ' %c at %c window.' + prop,colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight);
-                                    console.log(target);
-                                }
                             }
                         }
                     }
