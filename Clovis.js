@@ -93,7 +93,7 @@ whiteListPrompt();
 var globalIterationValue = 5;
 
 function iterationLevelsPrompt(){
-    var iterationLevels = prompt("Enter a value between 1 and 10 for how many many levels deep into object structures do you want to iterate through. This process looks for whitelist terms, removes empty strings, null values, undefined values, empty objects, functions, etc. \n\n Normally 3 to 5 is sufficient. The higher the value, the longer this will take to process and more matches it can potentially find for whitelisting. Depending on how many globally scoped variables are on the site, this could take several minutes to complete.");
+    var iterationLevels = prompt("Enter a value between 1 and 10 for how many many levels deep into object structures do you want to iterate through. This process looks for whitelist terms, removes empty strings, null values, undefined values, empty objects, functions, etc. \n\n Normally 3 to 5 is sufficient. The higher the value, the longer this will take to process and more matches it can potentially find for whitelisting.");
     var iterationValue = parseInt(iterationLevels)
     if(typeof iterationValue === 'number' && iterationValue <= 10 && iterationValue >= 1){
         globalIterationValue = iterationValue;
@@ -114,7 +114,6 @@ let iterationCopy10 = (src,parent1,parent2,parent3,parent4,parent5,parent6,paren
             for (let prop in src) {
                 if(blackListedKeys.indexOf(prop) == -1 && blackListedKeys.indexOf(src[prop]) == -1){
                     if (srcKeys.indexOf(prop)>-1 && prop!==parent1 && prop!==parent2 && prop!==parent3 && prop!==parent4 && prop!==parent5 && prop!==parent6 && prop!==parent7 && prop!==parent8 && prop!==parent9) {
-                        console.log('Level 10: ' + 'window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+parent7+'.'+parent8+'.'+parent9+'.'+prop);
                         if(typeof src[prop] === 'function'){
                             continue;
                         }
@@ -181,7 +180,6 @@ let iterationCopy9 = (src,parent1,parent2,parent3,parent4,parent5,parent6,parent
             for (let prop in src) {
                 if(blackListedKeys.indexOf(prop) == -1 && blackListedKeys.indexOf(src[prop]) == -1){
                     if (srcKeys.indexOf(prop)>-1 && prop!==parent1 && prop!==parent2 && prop!==parent3 && prop!==parent4 && prop!==parent5 && prop!==parent6 && prop!==parent7 && prop!==parent8){
-                        console.log('Level 9: ' + 'window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+parent7+'.'+parent8+'.'+prop);
                         if(typeof src[prop] === 'function'){
                             continue;
                         }
@@ -254,8 +252,6 @@ let iterationCopy8 = (src,parent1,parent2,parent3,parent4,parent5,parent6,parent
             for (let prop in src) {
                 if(blackListedKeys.indexOf(prop) == -1 && blackListedKeys.indexOf(src[prop]) == -1){
                     if (srcKeys.indexOf(prop)>-1 && prop!==parent1 && prop!==parent2 && prop!==parent3 && prop!==parent4 && prop!==parent5 && prop!==parent6 && prop!==parent7){
-                        console.log('Level 8: ' + 'window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+parent7+'.'+prop);
-
                         if(typeof src[prop] === 'function'){
                             continue;
                         }
@@ -327,8 +323,6 @@ let iterationCopy7 = (src,parent1,parent2,parent3,parent4,parent5,parent6) => {
             for (let prop in src) {
                 if(blackListedKeys.indexOf(prop) == -1 && blackListedKeys.indexOf(src[prop]) == -1){
                     if (srcKeys.indexOf(prop)>-1 && prop!==parent1 && prop!==parent2 && prop!==parent3 && prop!==parent4 && prop!==parent5 && prop!==parent6){
-                        console.log('Level 7: ' + 'window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+prop);
-
                         if(typeof src[prop] === 'function'){
                             continue;
                         }
@@ -400,8 +394,6 @@ let iterationCopy6 = (src,parent1,parent2,parent3,parent4,parent5) => {
             for (let prop in src) {
                 if(blackListedKeys.indexOf(prop) == -1 && blackListedKeys.indexOf(src[prop]) == -1){
                     if (srcKeys.indexOf(prop)>-1 && prop!==parent1 && prop!==parent2 && prop!==parent3 && prop!==parent4 && prop!==parent5){
-                        console.log('Level 6: ' + 'window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+prop);
-
                         if(typeof src[prop] === 'function'){
                             continue;
                         }
@@ -473,8 +465,6 @@ let iterationCopy5 = (src,parent1,parent2,parent3,parent4) => {
             for (let prop in src) {
                 if(blackListedKeys.indexOf(prop) == -1 && blackListedKeys.indexOf(src[prop]) == -1){
                     if (srcKeys.indexOf(prop)>-1 && prop!==parent1 && prop!==parent2 && prop!==parent3 && prop!==parent4){
-                        console.log('Level 5: ' + 'window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+prop);
-
                         if(typeof src[prop] === 'function'){
                             continue;
                         }
@@ -549,8 +539,6 @@ let iterationCopy4 = (src,parent1,parent2,parent3) => {
             for (let prop in src) {
                 if(blackListedKeys.indexOf(prop) == -1 && blackListedKeys.indexOf(src[prop]) == -1){
                     if (srcKeys.indexOf(prop)>-1 && prop!==parent1 && prop!==parent2 && prop!==parent3){
-                        console.log('Level 4: ' + 'window.'+parent1+'.'+parent2+'.'+parent3+'.'+prop);
-
                         if(typeof src[prop] === 'function'){
                             continue;
                         }
@@ -624,8 +612,6 @@ let iterationCopy3 = (src, parent1, parent2) => {
             for (let prop in src) {
                 if(blackListedKeys.indexOf(prop) == -1 && blackListedKeys.indexOf(src[prop]) == -1){
                     if (srcKeys.indexOf(prop)>-1 && prop!==parent1 && prop!==parent2){
-                        console.log('Level 3: ' + 'window.'+parent1+'.'+parent2+'.'+prop);
-
                         if(typeof src[prop] === 'function'){
                             continue;
                         }
@@ -700,7 +686,6 @@ let iterationCopy2 = (src, parent1) => {
             for (let prop in src) {
                 if(blackListedKeys.indexOf(prop) == -1 && blackListedKeys.indexOf(src[prop]) == -1){
                     if (srcKeys.indexOf(prop)>-1 && prop!==parent1){
-                        console.log('Level 2: ' + 'window.'+parent1+'.'+prop);
                         if(typeof src[prop] === 'function'){
                             continue;
                         }
@@ -773,8 +758,6 @@ let iterationCopy1 = (src) => {
     try{
         for(let prop in src) {
             if(blackListedKeys.indexOf(prop) == -1 && blackListedKeys.indexOf(src[prop]) == -1){
-                console.log('Level 1: ' + 'window.'+prop);
-
                 if(typeof src[prop] === 'function'){
                     continue;
                 }
