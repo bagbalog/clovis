@@ -110,38 +110,38 @@ let iterationCopy10 = (src,parent1,parent2,parent3,parent4,parent5,parent6,paren
     let target = {};
     let srcKeys = Object.keys(src);
     try{
-        for (let prop in src) {
-            if(blackListedKeys.indexOf(prop) == -1 && blackListedKeys.indexOf(src[prop]) == -1){
-                if (srcKeys.indexOf(prop)>-1 && prop!==parent1 && prop!==parent2 && prop!==parent3 && prop!==parent4 && prop!==parent5 && prop!==parent6 && prop!==parent7 && prop!==parent8 && prop!==parent9) {
+        if(parent1 !== undefined && parent2 !== undefined && parent3 !== undefined && parent4 !== undefined && parent5 !== undefined && parent6 !== undefined && parent7 !== undefined && parent8 !== undefined && parent9 !== undefined){
+            for (let prop in src) {
+                if(blackListedKeys.indexOf(prop) == -1 && blackListedKeys.indexOf(src[prop]) == -1){
+                    if (srcKeys.indexOf(prop)>-1 && prop!==parent1 && prop!==parent2 && prop!==parent3 && prop!==parent4 && prop!==parent5 && prop!==parent6 && prop!==parent7 && prop!==parent8 && prop!==parent9) {
+                        console.log('Level 10: ' + 'window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+parent7+'.'+parent8+'.'+parent9+'.'+prop);
+                        if(typeof src[prop] === 'function'){
+                            continue;
+                        }
 
-                    if(typeof src[prop] === 'function'){
-                        continue;
-                    }
-
-                    if(typeof src[prop] === 'boolean' || typeof src[prop] === 'number'){
-                        target[prop] = src[prop];
-                    }
-
-
-                    if(typeof src[prop] === 'object' && src[prop] !== undefined && src[prop] !== null){
-                        /*Get rid of any HTML elements or Arrays and boil it down to just Objects*/
-                        if(src[prop] instanceof HTMLElement === false && Array.isArray(src[prop]) === false){
-                            if(src[prop] !== src[prop].parent){
-                                target[prop] = src[prop]
-                            }
-                            if(target[prop] === undefined){
-                                delete target[prop]
-                            }
-                        }            
-                    }
-
-                    if(typeof src[prop] === 'string'){
-                        if(src[prop].length > 0){
+                        if(typeof src[prop] === 'boolean' || typeof src[prop] === 'number'){
                             target[prop] = src[prop];
                         }
-                    }
 
-                    if(parent1 !== undefined && parent2 !== undefined && parent3 !== undefined && parent4 !== undefined && parent5 !== undefined && parent6 !== undefined && parent7 !== undefined && parent8 !== undefined && parent9 !== undefined){
+
+                        if(typeof src[prop] === 'object' && src[prop] !== undefined && src[prop] !== null){
+                            /*Get rid of any HTML elements or Arrays and boil it down to just Objects*/
+                            if(src[prop] instanceof HTMLElement === false && Array.isArray(src[prop]) === false){
+                                if(src[prop] !== src[prop].parent){
+                                    target[prop] = src[prop]
+                                }
+                                if(target[prop] === undefined){
+                                    delete target[prop]
+                                }
+                            }            
+                        }
+
+                        if(typeof src[prop] === 'string'){
+                            if(src[prop].length > 0){
+                                target[prop] = src[prop];
+                            }
+                        }
+
                         for(var i=0; i<whiteListedKeys.length; i++){
                             if(prop.toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1 && typeof src[prop] !== 'function' &&  src[prop] !== undefined && src[prop] !== null && blackListedKeys.indexOf(prop) == -1){
                                 console.log('%c Found the whitelisted key: %c ' + whiteListedKeys[i] + ' %c at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+parent7+'.'+parent8+'.'+parent9+'.'+prop+' ',colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight)
@@ -161,7 +161,12 @@ let iterationCopy10 = (src,parent1,parent2,parent3,parent4,parent5,parent6,paren
         }
 
         if(Object.keys(target).length > 0){
-            return target; 
+            try{
+                JSON.stringify(target)
+                return target; 
+            } catch (err){
+                /*console.log(err)*/
+            }
         }
     } catch(e) {
         console.log('10th stack: ' + e, parent1, parent2, parent3, parent4, parent5, parent6, parent7, parent8, parent9, src)
@@ -172,42 +177,43 @@ let iterationCopy9 = (src,parent1,parent2,parent3,parent4,parent5,parent6,parent
     let target = {};
     let srcKeys = Object.keys(src);
     try{
-        for (let prop in src) {
-            if(blackListedKeys.indexOf(prop) == -1 && blackListedKeys.indexOf(src[prop]) == -1){
-                if (srcKeys.indexOf(prop)>-1 && prop!==parent1 && prop!==parent2 && prop!==parent3 && prop!==parent4 && prop!==parent5 && prop!==parent6 && prop!==parent7 && prop!==parent8){
+        if(parent1 !== undefined && parent2 !== undefined && parent3 !== undefined && parent4 !== undefined && parent5 !== undefined && parent6 !== undefined && parent7 !== undefined && parent8 !== undefined){
+            for (let prop in src) {
+                if(blackListedKeys.indexOf(prop) == -1 && blackListedKeys.indexOf(src[prop]) == -1){
+                    if (srcKeys.indexOf(prop)>-1 && prop!==parent1 && prop!==parent2 && prop!==parent3 && prop!==parent4 && prop!==parent5 && prop!==parent6 && prop!==parent7 && prop!==parent8){
+                        console.log('Level 9: ' + 'window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+parent7+'.'+parent8+'.'+prop);
+                        if(typeof src[prop] === 'function'){
+                            continue;
+                        }
 
-                    if(typeof src[prop] === 'function'){
-                        continue;
-                    }
-
-                    if(typeof src[prop] === 'boolean' || typeof src[prop] === 'number'){
-                        target[prop] = src[prop];
-                    }
-
-
-                    if(typeof src[prop] === 'object' && src[prop] !== undefined && src[prop] !== null){
-                        /*Get rid of any HTML elements or Arrays and boil it down to just Objects*/
-                        if(src[prop] instanceof HTMLElement === false && Array.isArray(src[prop]) === false){
-                            if(globalIterationValue > 9){
-                                if(iterationCopy10(src[prop]) !== undefined){
-                                    target[prop] = iterationCopy10(src[prop], parent1, parent2, parent3, parent4, parent5, parent6, parent7, parent8, prop);
-                                }
-                            } else {
-                                target[prop] = src[prop];
-                            } 
-                            if(target[prop] === undefined){
-                                delete target[prop]
-                            }
-                        }            
-                    }
-
-                    if(typeof src[prop] === 'string'){
-                        if(src[prop].length > 0){
+                        if(typeof src[prop] === 'boolean' || typeof src[prop] === 'number'){
                             target[prop] = src[prop];
                         }
-                    }
 
-                    if(parent1 !== undefined && parent2 !== undefined && parent3 !== undefined && parent4 !== undefined && parent5 !== undefined && parent6 !== undefined && parent7 !== undefined && parent8 !== undefined){
+
+                        if(typeof src[prop] === 'object' && src[prop] !== undefined && src[prop] !== null){
+                            /*Get rid of any HTML elements or Arrays and boil it down to just Objects*/
+                            if(src[prop] instanceof HTMLElement === false && Array.isArray(src[prop]) === false){
+                                if(globalIterationValue > 9){
+                                    let childObj = iterationCopy10(src[prop],parent1,parent2,parent3,parent4,parent5,parent6,parent7,parent8,prop)
+                                    if(childObj !== undefined){
+                                        target[prop] = childObj
+                                    }
+                                } else {
+                                    target[prop] = src[prop];
+                                } 
+                                if(target[prop] === undefined){
+                                    delete target[prop]
+                                }
+                            }            
+                        }
+
+                        if(typeof src[prop] === 'string'){
+                            if(src[prop].length > 0){
+                                target[prop] = src[prop];
+                            }
+                        }
+
                         for(var i=0; i<whiteListedKeys.length; i++){
                             if(prop.toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1 && typeof src[prop] !== 'function' &&  src[prop] !== undefined && src[prop] !== null && blackListedKeys.indexOf(prop) == -1){
                                 console.log('%c Found the whitelisted key: %c ' + whiteListedKeys[i] + ' %c at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+parent7+'.'+parent8+'.'+prop+' ',colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight)
@@ -227,7 +233,12 @@ let iterationCopy9 = (src,parent1,parent2,parent3,parent4,parent5,parent6,parent
         }
 
         if(Object.keys(target).length > 0){
-            return target; 
+            try{
+                JSON.stringify(target)
+                return target; 
+            } catch (err){
+                /*console.log(err)*/
+            }
         }
     } catch(e) {
         console.log('9th stack: ' + e, parent1, parent2, parent3, parent4, parent5, parent6, parent7, parent8, src)
@@ -239,42 +250,44 @@ let iterationCopy8 = (src,parent1,parent2,parent3,parent4,parent5,parent6,parent
     let srcKeys = Object.keys(src)
 
     try{
-        for (let prop in src) {
-            if(blackListedKeys.indexOf(prop) == -1 && blackListedKeys.indexOf(src[prop]) == -1){
-                if (srcKeys.indexOf(prop)>-1 && prop!==parent1 && prop!==parent2 && prop!==parent3 && prop!==parent4 && prop!==parent5 && prop!==parent6 && prop!==parent7){
+        if(parent1 !== undefined && parent2 !== undefined && parent3 !== undefined && parent4 !== undefined && parent5 !== undefined && parent6 !== undefined && parent7 !== undefined){
+            for (let prop in src) {
+                if(blackListedKeys.indexOf(prop) == -1 && blackListedKeys.indexOf(src[prop]) == -1){
+                    if (srcKeys.indexOf(prop)>-1 && prop!==parent1 && prop!==parent2 && prop!==parent3 && prop!==parent4 && prop!==parent5 && prop!==parent6 && prop!==parent7){
+                        console.log('Level 8: ' + 'window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+parent7+'.'+prop);
 
-                    if(typeof src[prop] === 'function'){
-                        continue;
-                    }
+                        if(typeof src[prop] === 'function'){
+                            continue;
+                        }
 
-                    if(typeof src[prop] === 'boolean' || typeof src[prop] === 'number'){
-                        target[prop] = src[prop];
-                    }
-
-
-                    if(typeof src[prop] === 'object' && src[prop] !== undefined && src[prop] !== null){
-                        /*Get rid of any HTML elements or Arrays and boil it down to just Objects*/
-                        if(src[prop] instanceof HTMLElement === false && Array.isArray(src[prop]) === false){
-                            if(globalIterationValue > 8){
-                                if(iterationCopy9(src[prop]) !== undefined){
-                                    target[prop] = iterationCopy9(src[prop], parent1, parent2, parent3, parent4, parent5, parent6, parent7, prop);
-                                }
-                            } else {
-                                target[prop] = src[prop];
-                            } 
-                            if(target[prop] === undefined){
-                                delete target[prop]
-                            }
-                        }            
-                    }
-
-                    if(typeof src[prop] === 'string'){
-                        if(src[prop].length > 0){
+                        if(typeof src[prop] === 'boolean' || typeof src[prop] === 'number'){
                             target[prop] = src[prop];
                         }
-                    }
 
-                    if(parent1 !== undefined && parent2 !== undefined && parent3 !== undefined && parent4 !== undefined && parent5 !== undefined && parent6 !== undefined && parent7 !== undefined){
+
+                        if(typeof src[prop] === 'object' && src[prop] !== undefined && src[prop] !== null){
+                            /*Get rid of any HTML elements or Arrays and boil it down to just Objects*/
+                            if(src[prop] instanceof HTMLElement === false && Array.isArray(src[prop]) === false){
+                                if(globalIterationValue > 8){
+                                    let childObj = iterationCopy9(src[prop],parent1,parent2,parent3,parent4,parent5,parent6,parent7,prop)
+                                    if(childObj !== undefined){
+                                        target[prop] = childObj
+                                    }
+                                } else {
+                                    target[prop] = src[prop];
+                                } 
+                                if(target[prop] === undefined){
+                                    delete target[prop]
+                                }
+                            }            
+                        }
+
+                        if(typeof src[prop] === 'string'){
+                            if(src[prop].length > 0){
+                                target[prop] = src[prop];
+                            }
+                        }
+
                         for(var i=0; i<whiteListedKeys.length; i++){
                             if(prop.toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1 && typeof src[prop] !== 'function' &&  src[prop] !== undefined && src[prop] !== null && blackListedKeys.indexOf(prop) == -1){
                                 console.log('%c Found the whitelisted key: %c ' + whiteListedKeys[i] + ' %c at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+parent7+'.'+prop+' ',colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight)
@@ -294,7 +307,12 @@ let iterationCopy8 = (src,parent1,parent2,parent3,parent4,parent5,parent6,parent
         }
 
         if(Object.keys(target).length > 0){
-            return target; 
+            try{
+                JSON.stringify(target)
+                return target; 
+            } catch (err){
+                /*console.log(err)*/
+            }
         }
     } catch(e) {
         console.log('8th stack: ' + e, parent1, parent2, parent3, parent4, parent5, parent6, parent7, src)
@@ -305,42 +323,44 @@ let iterationCopy7 = (src,parent1,parent2,parent3,parent4,parent5,parent6) => {
     let target = {};
     let srcKeys = Object.keys(src);
     try{
-        for (let prop in src) {
-            if(blackListedKeys.indexOf(prop) == -1 && blackListedKeys.indexOf(src[prop]) == -1){
-                if (srcKeys.indexOf(prop)>-1 && prop!==parent1 && prop!==parent2 && prop!==parent3 && prop!==parent4 && prop!==parent5 && prop!==parent6){
+        if(parent1 !== undefined && parent2 !== undefined && parent3 !== undefined && parent4 !== undefined && parent5 !== undefined && parent6 !== undefined){
+            for (let prop in src) {
+                if(blackListedKeys.indexOf(prop) == -1 && blackListedKeys.indexOf(src[prop]) == -1){
+                    if (srcKeys.indexOf(prop)>-1 && prop!==parent1 && prop!==parent2 && prop!==parent3 && prop!==parent4 && prop!==parent5 && prop!==parent6){
+                        console.log('Level 7: ' + 'window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+prop);
 
-                    if(typeof src[prop] === 'function'){
-                        continue;
-                    }
+                        if(typeof src[prop] === 'function'){
+                            continue;
+                        }
 
-                    if(typeof src[prop] === 'boolean' || typeof src[prop] === 'number'){
-                        target[prop] = src[prop];
-                    }
-
-
-                    if(typeof src[prop] === 'object' && src[prop] !== undefined && src[prop] !== null){
-                        /*Get rid of any HTML elements or Arrays and boil it down to just Objects*/
-                        if(src[prop] instanceof HTMLElement === false && Array.isArray(src[prop]) === false){
-                            if(globalIterationValue > 7){
-                                if(iterationCopy8(src[prop]) !== undefined){
-                                    target[prop] = iterationCopy8(src[prop], parent1, parent2, parent3, parent4, parent5, parent6, prop);
-                                }
-                            } else {
-                                target[prop] = src[prop];
-                            } 
-                            if(target[prop] === undefined){
-                                delete target[prop]
-                            }
-                        }            
-                    }
-
-                    if(typeof src[prop] === 'string'){
-                        if(src[prop].length > 0){
+                        if(typeof src[prop] === 'boolean' || typeof src[prop] === 'number'){
                             target[prop] = src[prop];
                         }
-                    }
 
-                    if(parent1 !== undefined && parent2 !== undefined && parent3 !== undefined && parent4 !== undefined && parent5 !== undefined && parent6 !== undefined){
+
+                        if(typeof src[prop] === 'object' && src[prop] !== undefined && src[prop] !== null){
+                            /*Get rid of any HTML elements or Arrays and boil it down to just Objects*/
+                            if(src[prop] instanceof HTMLElement === false && Array.isArray(src[prop]) === false){
+                                if(globalIterationValue > 7){
+                                    let childObj = iterationCopy8(src[prop],parent1,parent2,parent3,parent4,parent5,parent6,prop)
+                                    if(childObj !== undefined){
+                                        target[prop] = childObj
+                                    }
+                                } else {
+                                    target[prop] = src[prop];
+                                } 
+                                if(target[prop] === undefined){
+                                    delete target[prop]
+                                }
+                            }            
+                        }
+
+                        if(typeof src[prop] === 'string'){
+                            if(src[prop].length > 0){
+                                target[prop] = src[prop];
+                            }
+                        }
+
                         for(var i=0; i<whiteListedKeys.length; i++){
                             if(prop.toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1 && typeof src[prop] !== 'function' &&  src[prop] !== undefined && src[prop] !== null && blackListedKeys.indexOf(prop) == -1){
                                 console.log('%c Found the whitelisted key: %c ' + whiteListedKeys[i] + ' %c at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+prop+' ',colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight)
@@ -360,7 +380,12 @@ let iterationCopy7 = (src,parent1,parent2,parent3,parent4,parent5,parent6) => {
         }
 
         if(Object.keys(target).length > 0){
-            return target; 
+            try{
+                JSON.stringify(target)
+                return target; 
+            } catch (err){
+                /*console.log(err)*/
+            }
         }
     } catch(e) {
         console.log('7th stack: ' + e, parent1, parent2, parent3, parent4, parent5, parent6, src)
@@ -371,42 +396,44 @@ let iterationCopy6 = (src,parent1,parent2,parent3,parent4,parent5) => {
     let target = {};
     let srcKeys = Object.keys(src);
     try{
-        for (let prop in src) {
-            if(blackListedKeys.indexOf(prop) == -1 && blackListedKeys.indexOf(src[prop]) == -1){
-                if (srcKeys.indexOf(prop)>-1 && prop!==parent1 && prop!==parent2 && prop!==parent3 && prop!==parent4 && prop!==parent5){
+        if(parent1 !== undefined && parent2 !== undefined && parent3 !== undefined && parent4 !== undefined && parent5 !== undefined){
+            for (let prop in src) {
+                if(blackListedKeys.indexOf(prop) == -1 && blackListedKeys.indexOf(src[prop]) == -1){
+                    if (srcKeys.indexOf(prop)>-1 && prop!==parent1 && prop!==parent2 && prop!==parent3 && prop!==parent4 && prop!==parent5){
+                        console.log('Level 6: ' + 'window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+prop);
 
-                    if(typeof src[prop] === 'function'){
-                        continue;
-                    }
+                        if(typeof src[prop] === 'function'){
+                            continue;
+                        }
 
-                    if(typeof src[prop] === 'boolean' || typeof src[prop] === 'number'){
-                        target[prop] = src[prop];
-                    }
-
-
-                    if(typeof src[prop] === 'object' && src[prop] !== undefined && src[prop] !== null){
-                        /*Get rid of any HTML elements or Arrays and boil it down to just Objects*/
-                        if(src[prop] instanceof HTMLElement === false && Array.isArray(src[prop]) === false){
-                            if(globalIterationValue > 6){
-                                if(iterationCopy7(src[prop]) !== undefined){
-                                    target[prop] = iterationCopy7(src[prop], parent1, parent2, parent3, parent4, parent5, prop);
-                                }
-                            } else {
-                                target[prop] = src[prop];
-                            } 
-                            if(target[prop] === undefined){
-                                delete target[prop]
-                            }
-                        }            
-                    }
-
-                    if(typeof src[prop] === 'string'){
-                        if(src[prop].length > 0){
+                        if(typeof src[prop] === 'boolean' || typeof src[prop] === 'number'){
                             target[prop] = src[prop];
                         }
-                    }
 
-                    if(parent1 !== undefined && parent2 !== undefined && parent3 !== undefined && parent4 !== undefined && parent5 !== undefined){
+
+                        if(typeof src[prop] === 'object' && src[prop] !== undefined && src[prop] !== null){
+                            /*Get rid of any HTML elements or Arrays and boil it down to just Objects*/
+                            if(src[prop] instanceof HTMLElement === false && Array.isArray(src[prop]) === false){
+                                if(globalIterationValue > 6){
+                                    let childObj = iterationCopy7(src[prop],parent1,parent2,parent3,parent4,parent5,prop)
+                                    if(childObj !== undefined){
+                                        target[prop] = childObj
+                                    }
+                                } else {
+                                    target[prop] = src[prop];
+                                } 
+                                if(target[prop] === undefined){
+                                    delete target[prop]
+                                }
+                            }            
+                        }
+
+                        if(typeof src[prop] === 'string'){
+                            if(src[prop].length > 0){
+                                target[prop] = src[prop];
+                            }
+                        }
+
                         for(var i=0; i<whiteListedKeys.length; i++){
                             if(prop.toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1 && typeof src[prop] !== 'function' &&  src[prop] !== undefined && src[prop] !== null && blackListedKeys.indexOf(prop) == -1){
                                 console.log('%c Found the whitelisted key: %c ' + whiteListedKeys[i] + ' %c at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+prop+' ',colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight)
@@ -419,14 +446,19 @@ let iterationCopy6 = (src,parent1,parent2,parent3,parent4,parent5) => {
                                     console.log(target)
                                 }
                             }
-                        }
+                        } 
                     }
                 }
             }
         }
 
         if(Object.keys(target).length > 0){
-            return target; 
+            try{
+                JSON.stringify(target)
+                return target; 
+            } catch (err){
+                /*console.log(err)*/
+            }
         }
     } catch(e) {
         console.log('6th stack: ' + e)
@@ -437,44 +469,46 @@ let iterationCopy5 = (src,parent1,parent2,parent3,parent4) => {
     let target = {};
     let srcKeys = Object.keys(src);
     try{
-        for (let prop in src) {
-            if(blackListedKeys.indexOf(prop) == -1 && blackListedKeys.indexOf(src[prop]) == -1){
-                if (srcKeys.indexOf(prop)>-1 && prop!==parent1 && prop!==parent2 && prop!==parent3 && prop!==parent4){
+        if(parent1 !== undefined && parent2 !== undefined && parent3 !== undefined && parent4 !== undefined){
+            for (let prop in src) {
+                if(blackListedKeys.indexOf(prop) == -1 && blackListedKeys.indexOf(src[prop]) == -1){
+                    if (srcKeys.indexOf(prop)>-1 && prop!==parent1 && prop!==parent2 && prop!==parent3 && prop!==parent4){
+                        console.log('Level 5: ' + 'window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+prop);
 
-                    if(typeof src[prop] === 'function'){
-                        continue;
-                    }
+                        if(typeof src[prop] === 'function'){
+                            continue;
+                        }
 
-                    if(typeof src[prop] === 'boolean' || typeof src[prop] === 'number'){
-                        target[prop] = src[prop];
-                    }
-
-
-                    if(typeof src[prop] === 'object' && src[prop] !== undefined && src[prop] !== null){
-                        /*Get rid of any HTML elements or Arrays and boil it down to just Objects*/
-                        if(src[prop] instanceof HTMLElement === false && Array.isArray(src[prop]) === false){
-                            if(src[prop] !== src[prop].parent){
-                                if(globalIterationValue > 5){
-                                    if(iterationCopy6(src[prop]) !== undefined){
-                                        target[prop] = iterationCopy6(src[prop], parent1, parent2, parent3, parent4, prop);
-                                    }
-                                } else {
-                                    target[prop] = src[prop];
-                                }
-                                if(target[prop] === undefined){
-                                    delete target[prop]
-                                }         
-                            }
-                        }            
-                    }
-
-                    if(typeof src[prop] === 'string'){
-                        if(src[prop].length > 0){
+                        if(typeof src[prop] === 'boolean' || typeof src[prop] === 'number'){
                             target[prop] = src[prop];
                         }
-                    }
 
-                    if(parent1 !== undefined && parent2 !== undefined && parent3 !== undefined && parent4 !== undefined){
+
+                        if(typeof src[prop] === 'object' && src[prop] !== undefined && src[prop] !== null){
+                            /*Get rid of any HTML elements or Arrays and boil it down to just Objects*/
+                            if(src[prop] instanceof HTMLElement === false && Array.isArray(src[prop]) === false){
+                                if(src[prop] !== src[prop].parent){
+                                    if(globalIterationValue > 5){
+                                        let childObj = iterationCopy6(src[prop],parent1,parent2,parent3,parent4,prop)
+                                        if(childObj !== undefined){
+                                            target[prop] = childObj
+                                        }
+                                    } else {
+                                        target[prop] = src[prop];
+                                    }
+                                    if(target[prop] === undefined){
+                                        delete target[prop]
+                                    }         
+                                }
+                            }            
+                        }
+
+                        if(typeof src[prop] === 'string'){
+                            if(src[prop].length > 0){
+                                target[prop] = src[prop];
+                            }
+                        }
+
                         for(var i=0; i<whiteListedKeys.length; i++){
                             if(prop.toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1 && typeof src[prop] !== 'function' &&  src[prop] !== undefined && src[prop] !== null && blackListedKeys.indexOf(prop) == -1){
                                 console.log('%c Found the whitelisted key: %c ' + whiteListedKeys[i] + ' %c at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+prop+' ',colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight)
@@ -488,13 +522,19 @@ let iterationCopy5 = (src,parent1,parent2,parent3,parent4) => {
                                 }
                             }
                         }
+                        
                     }
                 }
             }
         }
 
         if(Object.keys(target).length > 0){
-            return target; 
+            try{
+                JSON.stringify(target)
+                return target; 
+            } catch (err){
+                /*console.log(err)*/
+            }
         }
     } catch(e) {
         console.log('5th stack: ' + e)
@@ -505,43 +545,46 @@ let iterationCopy4 = (src,parent1,parent2,parent3) => {
     let target = {};
     let srcKeys = Object.keys(src);
     try{
-        for (let prop in src) {
-            if(blackListedKeys.indexOf(prop) == -1 && blackListedKeys.indexOf(src[prop]) == -1){
-                if (srcKeys.indexOf(prop)>-1 && prop!==parent1 && prop!==parent2 && prop!==parent3){
-                    if(typeof src[prop] === 'function'){
-                        continue;
-                    }
+        if(parent1 !== undefined && parent2 !== undefined && parent3 !== undefined){
+            for (let prop in src) {
+                if(blackListedKeys.indexOf(prop) == -1 && blackListedKeys.indexOf(src[prop]) == -1){
+                    if (srcKeys.indexOf(prop)>-1 && prop!==parent1 && prop!==parent2 && prop!==parent3){
+                        console.log('Level 4: ' + 'window.'+parent1+'.'+parent2+'.'+parent3+'.'+prop);
 
-                    if(typeof src[prop] === 'boolean' || typeof src[prop] === 'number'){
-                        target[prop] = src[prop];
-                    }
+                        if(typeof src[prop] === 'function'){
+                            continue;
+                        }
 
-
-                    if(typeof src[prop] === 'object' && src[prop] !== undefined && src[prop] !== null){
-                        /*Get rid of any HTML elements or Arrays and boil it down to just Objects*/
-                        if(src[prop] instanceof HTMLElement === false && Array.isArray(src[prop]) === false){
-                            if(src[prop] !== src[prop].parent){
-                                if(globalIterationValue > 4){
-                                    if(iterationCopy5(src[prop]) !== undefined){
-                                        target[prop] = iterationCopy5(src[prop], parent1, parent2, parent3, prop);
-                                    }
-                                } else {
-                                    target[prop] = src[prop];
-                                }
-                                if(target[prop] === undefined){
-                                    delete target[prop]
-                                }
-                            }
-                        }            
-                    }
-
-                    if(typeof src[prop] === 'string'){
-                        if(src[prop].length > 0){
+                        if(typeof src[prop] === 'boolean' || typeof src[prop] === 'number'){
                             target[prop] = src[prop];
                         }
-                    }
 
-                    if(parent1 !== undefined && parent2 !== undefined && parent3 !== undefined){
+
+                        if(typeof src[prop] === 'object' && src[prop] !== undefined && src[prop] !== null){
+                            /*Get rid of any HTML elements or Arrays and boil it down to just Objects*/
+                            if(src[prop] instanceof HTMLElement === false && Array.isArray(src[prop]) === false){
+                                if(src[prop] !== src[prop].parent){
+                                    if(globalIterationValue > 4){
+                                        let childObj = iterationCopy5(src[prop],parent1,parent2,parent3,prop)
+                                        if(childObj !== undefined){
+                                            target[prop] = childObj
+                                        }
+                                    } else {
+                                        target[prop] = src[prop];
+                                    }
+                                    if(target[prop] === undefined){
+                                        delete target[prop]
+                                    }
+                                }
+                            }            
+                        }
+
+                        if(typeof src[prop] === 'string'){
+                            if(src[prop].length > 0){
+                                target[prop] = src[prop];
+                            }
+                        }
+
                         for(var i=0; i<whiteListedKeys.length; i++){
                             if(prop.toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1 && typeof src[prop] !== 'function' &&  src[prop] !== undefined && src[prop] !== null && blackListedKeys.indexOf(prop) == -1){
                                 console.log('%c Found the whitelisted key: %c ' + whiteListedKeys[i] + ' %c at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+prop+' ',colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight)
@@ -556,13 +599,17 @@ let iterationCopy4 = (src,parent1,parent2,parent3) => {
                             }
                         }
                     }
-
                 }
             }
         }
 
         if(Object.keys(target).length > 0){
-            return target; 
+            try{
+                JSON.stringify(target)
+                return target; 
+            } catch (err){
+                /*console.log(err)*/
+            }
         }
     } catch(e) {
         console.log('4th stack: ' + e)
@@ -573,43 +620,46 @@ let iterationCopy3 = (src, parent1, parent2) => {
     let target = {};
     let srcKeys = Object.keys(src);
     try{
-        for (let prop in src) {
-            if(blackListedKeys.indexOf(prop) == -1 && blackListedKeys.indexOf(src[prop]) == -1){
-                if (srcKeys.indexOf(prop)>-1 && prop!==parent1 && prop!==parent2){
-                    if(typeof src[prop] === 'function'){
-                        continue;
-                    }
+        if(parent1 !== undefined && parent2 !== undefined){
+            for (let prop in src) {
+                if(blackListedKeys.indexOf(prop) == -1 && blackListedKeys.indexOf(src[prop]) == -1){
+                    if (srcKeys.indexOf(prop)>-1 && prop!==parent1 && prop!==parent2){
+                        console.log('Level 3: ' + 'window.'+parent1+'.'+parent2+'.'+prop);
 
-                    if(typeof src[prop] === 'boolean' || typeof src[prop] === 'number'){
-                        target[prop] = src[prop];
-                    }
+                        if(typeof src[prop] === 'function'){
+                            continue;
+                        }
 
-
-                    if(typeof src[prop] === 'object' && src[prop] !== undefined && src[prop] !== null){
-                        /*Get rid of any HTML elements or Arrays and boil it down to just Objects*/
-                        if(src[prop] instanceof HTMLElement === false && Array.isArray(src[prop]) === false){
-                            if(src[prop] !== src[prop].parent){
-                                if(globalIterationValue > 3){
-                                    if(iterationCopy4(src[prop]) !== undefined){
-                                        target[prop] = iterationCopy4(src[prop], parent1, parent2, prop);
-                                    }
-                                } else {
-                                    target[prop] = src[prop];
-                                }
-                                if(target[prop] === undefined){
-                                    delete target[prop]
-                                }
-                            }
-                        }            
-                    }
-
-                    if(typeof src[prop] === 'string'){
-                        if(src[prop].length > 0){
+                        if(typeof src[prop] === 'boolean' || typeof src[prop] === 'number'){
                             target[prop] = src[prop];
                         }
-                    }
 
-                    if(parent1 !== undefined && parent2 !== undefined){
+
+                        if(typeof src[prop] === 'object' && src[prop] !== undefined && src[prop] !== null){
+                            /*Get rid of any HTML elements or Arrays and boil it down to just Objects*/
+                            if(src[prop] instanceof HTMLElement === false && Array.isArray(src[prop]) === false){
+                                if(src[prop] !== src[prop].parent){
+                                    if(globalIterationValue > 3){
+                                        let childObj = iterationCopy4(src[prop],parent1,parent2,prop)
+                                        if(childObj !== undefined){
+                                            target[prop] = childObj
+                                        }
+                                    } else {
+                                        target[prop] = src[prop];
+                                    }
+                                    if(target[prop] === undefined){
+                                        delete target[prop]
+                                    }
+                                }
+                            }            
+                        }
+
+                        if(typeof src[prop] === 'string'){
+                            if(src[prop].length > 0){
+                                target[prop] = src[prop];
+                            }
+                        }
+
                         for(var i=0; i<whiteListedKeys.length; i++){
                             if(prop.toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1 && typeof src[prop] !== 'function' &&  src[prop] !== undefined && src[prop] !== null && blackListedKeys.indexOf(prop) == -1){
                                 console.log('%c Found the whitelisted key: %c ' + whiteListedKeys[i] + ' %c at %c window.'+parent1+'.'+parent2+'.'+prop+' ',colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight)
@@ -629,7 +679,12 @@ let iterationCopy3 = (src, parent1, parent2) => {
         }
 
         if(Object.keys(target).length > 0){
-            return target; 
+            try{
+                JSON.stringify(target)
+                return target; 
+            } catch (err){
+                /*console.log(err)*/
+            }
         }
     } catch(e) {
         console.log('3rd stack: ' + e)
@@ -641,45 +696,46 @@ let iterationCopy2 = (src, parent1) => {
     let srcKeys = Object.keys(src)
 
     try{
-        for (let prop in src) {
-            if(blackListedKeys.indexOf(prop) == -1 && blackListedKeys.indexOf(src[prop]) == -1){
-                if (srcKeys.indexOf(prop)>-1 && prop!==parent1){
+        if(parent1 !== undefined){
+            for (let prop in src) {
+                if(blackListedKeys.indexOf(prop) == -1 && blackListedKeys.indexOf(src[prop]) == -1){
+                    if (srcKeys.indexOf(prop)>-1 && prop!==parent1){
+                        console.log('Level 2: ' + 'window.'+parent1+'.'+prop);
+                        if(typeof src[prop] === 'function'){
+                            continue;
+                        }
 
-                    if(typeof src[prop] === 'function'){
-                        continue;
-                    }
-
-                    if(typeof src[prop] === 'boolean' || typeof src[prop] === 'number'){
-                        target[prop] = src[prop];
-                    }
-
-
-                    if(typeof src[prop] === 'object' && src[prop] !== undefined && src[prop] !== null){
-                        /*Get rid of any HTML elements or Arrays and boil it down to just Objects*/
-                        if(src[prop] instanceof HTMLElement === false && Array.isArray(src[prop]) === false){
-                            if(src[prop] !== src[prop].parent){
-                                if(globalIterationValue > 2){
-                                    if(iterationCopy3(src[prop]) !== undefined){
-                                        target[prop] = iterationCopy3(src[prop], parent1, prop);
-                                    }
-                                } else {
-                                    target[prop] = src[prop];
-                                }
-                                if(target[prop] === undefined){
-                                    delete target[prop]
-                                }
-                            }
-                        }            
-                    }
-
-                    if(typeof src[prop] === 'string'){
-                        if(src[prop].length > 0){
+                        if(typeof src[prop] === 'boolean' || typeof src[prop] === 'number'){
                             target[prop] = src[prop];
                         }
-                    }
 
 
-                    if(parent1 !== undefined){
+                        if(typeof src[prop] === 'object' && src[prop] !== undefined && src[prop] !== null){
+                            /*Get rid of any HTML elements or Arrays and boil it down to just Objects*/
+                            if(src[prop] instanceof HTMLElement === false && Array.isArray(src[prop]) === false){
+                                if(src[prop] !== src[prop].parent){
+                                    if(globalIterationValue > 2){
+                                        let childObj = iterationCopy3(src[prop],parent1,prop)
+                                        if(childObj !== undefined){
+                                            target[prop] = childObj
+                                        }
+                                    } else {
+                                        target[prop] = src[prop];
+                                    }
+                                    if(target[prop] === undefined){
+                                        delete target[prop]
+                                    }
+                                }
+                            }            
+                        }
+
+                        if(typeof src[prop] === 'string'){
+                            if(src[prop].length > 0){
+                                target[prop] = src[prop];
+                            }
+                        }
+
+
                         for(var i=0; i<whiteListedKeys.length; i++){
                             if(prop.toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1 && typeof src[prop] !== 'function' &&  src[prop] !== undefined && src[prop] !== null && blackListedKeys.indexOf(prop) == -1){
                                 console.log('%c Found the whitelisted key: %c ' + whiteListedKeys[i] + ' %c at %c window.'+parent1+'.'+prop+' ',colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight)
@@ -692,14 +748,19 @@ let iterationCopy2 = (src, parent1) => {
                                     console.log(target)
                                 }
                             }
-                        }
+                        } 
                     }
                 }
             }
         }
 
         if(Object.keys(target).length > 0){
-            return target; 
+            try{
+                JSON.stringify(target)
+                return target; 
+            } catch (err){
+                /*console.log(err)*/
+            }
         }
     } catch(e) {
         console.log('2nd stack: ' + e)
@@ -712,6 +773,8 @@ let iterationCopy1 = (src) => {
     try{
         for(let prop in src) {
             if(blackListedKeys.indexOf(prop) == -1 && blackListedKeys.indexOf(src[prop]) == -1){
+                console.log('Level 1: ' + 'window.'+prop);
+
                 if(typeof src[prop] === 'function'){
                     continue;
                 }
@@ -726,8 +789,9 @@ let iterationCopy1 = (src) => {
                     if(src[prop] instanceof HTMLElement === false && Array.isArray(src[prop]) === false){
                         if(src[prop] !== src[prop].parent){
                             if(globalIterationValue > 1){
-                                if(iterationCopy2(src[prop]) !== undefined){
-                                    target[prop] = iterationCopy2(src[prop], prop)
+                                let childObj = iterationCopy2(src[prop],prop)
+                                if(childObj !== undefined){
+                                    target[prop] = childObj
                                 }
                             } else {
                                 target[prop] = src[prop]
@@ -767,7 +831,12 @@ let iterationCopy1 = (src) => {
 
 
         if(Object.keys(target).length > 0){
-            return target; 
+            try{
+                JSON.stringify(target)
+                return target; 
+            } catch (err){
+                /*console.log(err)*/
+            }
         }
     } catch(e) {
         console.log('1st stack: ' + e);
