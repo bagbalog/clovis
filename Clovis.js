@@ -90,11 +90,13 @@ function whiteListPrompt(){
 }
 whiteListPrompt();
 
-var globalIterationValue = 5;
+if(!globalIterationValue){
+    var globalIterationValue = 5;
+} else if (globalIterationValue !== 5){
+    console.log('Custom set globalIterationValue ', globalIterationValue)
+}
 
 var blackListedKeys = ["Back", "Bounce", "Circ", "Elastic", "Expo", "Modernizr", "ShadyCSS", "Sine", "WebComponents", "WindowResize", "YT", "YTConfig", "allCookiesArray", "allCookiesObj", "allCookiesObject", "angular", "angularCacheModuleName", "blackListedKeys", "chrome", "colorCodeCookies", "colorCodeHighlight", "colorCodeMain", "colorCodeMaster", "dT_", "devicePixelRatio", "frames", "globalIterationValue", "grabCookies", "history", "html5", "innerHeight", "innerWidth", "isSecureContext", "length", "locationbar", "masterObject", "masterObject", "menubar", "ng", "ngMaterial", "outerHeight", "outerWidth", "pageXOffset", "pageYOffset", "parent", "personalbar", "ruxitagent", "screen", "screenLeft", "screenTop", "screenX", "screenY", "scrollX", "scrollY", "scrollbar", "scrollbars", "self", "speechSynthesis", "statusbar", "styleMedia", "toolbar", "top", "visualViewport", "visualViewport", "w", "webkitStorageInfo", "whiteListedKeys", "yt", "ytEventsEventsCounter", "ytPubsubPubsubInstance","globalIterationValue"];
-
-console.clear()
 
 let iterationCopy10 = (src,parent1,parent2,parent3,parent4,parent5,parent6,parent7,parent8,parent9) => {
     let target = {};
