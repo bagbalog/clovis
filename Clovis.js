@@ -92,17 +92,7 @@ whiteListPrompt();
 
 var globalIterationValue = 5;
 
-function iterationLevelsPrompt(){
-    var iterationLevels = prompt("Enter a value between 1 and 10 for how many many levels deep into object structures do you want to iterate through. This process looks for whitelist terms, removes empty strings, null values, undefined values, empty objects, functions, etc. \n\n Normally 3 to 5 is sufficient. The higher the value, the longer this will take to process and more matches it can potentially find for whitelisting.");
-    var iterationValue = parseInt(iterationLevels)
-    if(typeof iterationValue === 'number' && iterationValue <= 10 && iterationValue >= 1){
-        globalIterationValue = iterationValue;
-    }
-}
-iterationLevelsPrompt();
-
 var blackListedKeys = ["Back", "Bounce", "Circ", "Elastic", "Expo", "Modernizr", "ShadyCSS", "Sine", "WebComponents", "WindowResize", "YT", "YTConfig", "allCookiesArray", "allCookiesObj", "allCookiesObject", "angular", "angularCacheModuleName", "blackListedKeys", "chrome", "colorCodeCookies", "colorCodeHighlight", "colorCodeMain", "colorCodeMaster", "dT_", "devicePixelRatio", "frames", "globalIterationValue", "grabCookies", "history", "html5", "innerHeight", "innerWidth", "isSecureContext", "length", "locationbar", "masterObject", "masterObject", "menubar", "ng", "ngMaterial", "outerHeight", "outerWidth", "pageXOffset", "pageYOffset", "parent", "personalbar", "ruxitagent", "screen", "screenLeft", "screenTop", "screenX", "screenY", "scrollX", "scrollY", "scrollbar", "scrollbars", "self", "speechSynthesis", "statusbar", "styleMedia", "toolbar", "top", "visualViewport", "visualViewport", "w", "webkitStorageInfo", "whiteListedKeys", "yt", "ytEventsEventsCounter", "ytPubsubPubsubInstance","globalIterationValue"];
-
 
 console.clear()
 
