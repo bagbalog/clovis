@@ -62,15 +62,7 @@ var colorCodeFinish = [
 ].join(';');
 
 function whiteListPrompt(){
-    console.log('')
-    console.log('')
-    console.log('')
-    console.log('')
-    console.log('')
-    console.log('')
-
-    console.log('%c General whitelisting terms: ' + ["cart","device","digitalData"], colorCodeMain);
-    var whiteListPrompt = prompt("What terms do you want to search the variables for specifically? (Separated by comma) \n\n An example has been logged to the console for some terms we generally recommend, depending on customer.");
+    var whiteListPrompt = prompt("What terms do you want to search the variables for specifically? (Separated by comma) \n\n An example has been logged to the console for some terms we generally recommend, depending on customer.","cart,device,digitalData");
 
     if(whiteListPrompt.length > 0){
        if(whiteListPrompt.indexOf(',') !== -1){
