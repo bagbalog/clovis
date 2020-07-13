@@ -61,6 +61,8 @@ var colorCodeFinish = [
     , 'padding: 0px 100px 0px 100px'
 ].join(';');
 
+var clovisSearchType = 'both';
+
 function whiteListPrompt(){
     var whiteListPrompt = prompt("What terms do you want to search the variables for specifically? (Separated by comma) \n\n An example has been logged to the console for some terms we generally recommend, depending on customer.","cart,device,digitalData");
 
@@ -81,6 +83,23 @@ function whiteListPrompt(){
     }
 }
 whiteListPrompt();
+
+function searchTypePrompt(){
+    var searchPrompt = prompt("Do you want to search the Keys, the Values, or Both for the whitelist terms?","Both");
+    searchPrompt = searchPrompt.replace(/ /g,'')
+    if(searchPrompt.length > 0){
+        if(searchPrompt.toLowerCase() == 'both'){
+            clovisSearchType = 'both';
+        }
+        if(searchPrompt.toLowerCase() == 'keys' || searchPrompt.toLowerCase() == 'key'){
+            clovisSearchType = 'keys';
+        }
+        if(searchPrompt.toLowerCase() == 'values' || searchPrompt.toLowerCase() == 'value'){
+            clovisSearchType = 'values';
+        }   
+    }
+}
+searchTypePrompt()
 
 if(!globalIterationValue){
     var globalIterationValue = 5;
@@ -126,18 +145,27 @@ let iterationCopy10 = (src,parent1,parent2,parent3,parent4,parent5,parent6,paren
                         }
 
                         for(var i=0; i<whiteListedKeys.length; i++){
-                            if(prop.toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1 && typeof src[prop] !== 'function' &&  src[prop] !== undefined && src[prop] !== null && blackListedKeys.indexOf(prop) == -1){
-                                console.log('%c Found the whitelisted key: %c ' + whiteListedKeys[i] + ' %c at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+parent7+'.'+parent8+'.'+parent9+'.'+prop+' ',colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight)
-                                console.log(target)
-                            }
-
-                            if(src[prop] && typeof src[prop] === 'string'){
-                                if(src[prop].toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
-                                    console.log('%c Found the whitelisted value: %c ' + whiteListedKeys[i] + ' %c at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+parent7+'.'+parent8+'.'+parent9+'.'+prop+' ',colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                            if(clovisSearchType == 'both' || clovisSearchType == 'keys'){
+                                if(prop.toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1 && typeof src[prop] !== 'function' &&  src[prop] !== undefined && src[prop] !== null && blackListedKeys.indexOf(prop) == -1){
+                                    console.log('%c Found the whitelisted key: %c ' + whiteListedKeys[i] + ' %c at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+parent7+'.'+parent8+'.'+parent9+'.'+prop+' ',colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight)
                                     console.log(target)
                                 }
                             }
+        
+                            if(clovisSearchType == 'both' || clovisSearchType == 'values'){
+                                if(src[prop]){
+                                    try{
+                                        if(JSON.stringify(src[prop]).toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
+                                            console.log('%c Found the whitelisted value: %c ' + whiteListedKeys[i] + ' %c at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+parent7+'.'+parent8+'.'+parent9+'.'+prop+' ',colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                                            console.log(target)
+                                        }
+                                    } catch(wlErr){
+                                        //Doing nothing for now
+                                    }
+                                }
+                            }
                         }
+
                     }
                 }
             }
@@ -197,15 +225,23 @@ let iterationCopy9 = (src,parent1,parent2,parent3,parent4,parent5,parent6,parent
                         }
 
                         for(var i=0; i<whiteListedKeys.length; i++){
-                            if(prop.toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1 && typeof src[prop] !== 'function' &&  src[prop] !== undefined && src[prop] !== null && blackListedKeys.indexOf(prop) == -1){
-                                console.log('%c Found the whitelisted key: %c ' + whiteListedKeys[i] + ' %c at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+parent7+'.'+parent8+'.'+prop+' ',colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight)
-                                console.log(target)
-                            }
-
-                            if(src[prop] && typeof src[prop] === 'string'){
-                                if(src[prop].toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
-                                    console.log('%c Found the whitelisted value: %c ' + whiteListedKeys[i] + ' %c at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+parent7+'.'+parent8+'.'+prop+' ',colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                            if(clovisSearchType == 'both' || clovisSearchType == 'keys'){
+                                if(prop.toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1 && typeof src[prop] !== 'function' &&  src[prop] !== undefined && src[prop] !== null && blackListedKeys.indexOf(prop) == -1){
+                                    console.log('%c Found the whitelisted key: %c ' + whiteListedKeys[i] + ' %c at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+parent7+'.'+parent8+'.'+prop+' ',colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight)
                                     console.log(target)
+                                }
+                            }
+        
+                            if(clovisSearchType == 'both' || clovisSearchType == 'values'){
+                                if(src[prop]){
+                                    try{
+                                        if(JSON.stringify(src[prop]).toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
+                                            console.log('%c Found the whitelisted value: %c ' + whiteListedKeys[i] + ' %c at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+parent7+'.'+parent8+'.'+prop+' ',colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                                            console.log(target)
+                                        }
+                                    } catch(wlErr){
+                                        //Doing nothing for now
+                                    }
                                 }
                             }
                         }
@@ -268,19 +304,30 @@ let iterationCopy8 = (src,parent1,parent2,parent3,parent4,parent5,parent6,parent
                             }
                         }
 
-                        for(var i=0; i<whiteListedKeys.length; i++){
-                            if(prop.toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1 && typeof src[prop] !== 'function' &&  src[prop] !== undefined && src[prop] !== null && blackListedKeys.indexOf(prop) == -1){
-                                console.log('%c Found the whitelisted key: %c ' + whiteListedKeys[i] + ' %c at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+parent7+'.'+prop+' ',colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight)
-                                console.log(target)
-                            }
 
-                            if(src[prop] && typeof src[prop] === 'string'){
-                                if(src[prop].toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
-                                    console.log('%c Found the whitelisted value: %c ' + whiteListedKeys[i] + ' %c at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+parent7+'.'+prop+' ',colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                        for(var i=0; i<whiteListedKeys.length; i++){
+                            if(clovisSearchType == 'both' || clovisSearchType == 'keys'){
+                                if(prop.toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1 && typeof src[prop] !== 'function' &&  src[prop] !== undefined && src[prop] !== null && blackListedKeys.indexOf(prop) == -1){
+                                    console.log('%c Found the whitelisted key: %c ' + whiteListedKeys[i] + ' %c at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+parent7+'.'+prop+' ',colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight)
                                     console.log(target)
                                 }
                             }
+        
+                            if(clovisSearchType == 'both' || clovisSearchType == 'values'){
+                                if(src[prop]){
+                                    try{
+                                        if(JSON.stringify(src[prop]).toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
+                                            console.log('%c Found the whitelisted value: %c ' + whiteListedKeys[i] + ' %c at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+parent7+'.'+prop+' ',colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                                            console.log(target)
+                                        }
+                                    } catch(wlErr){
+                                        //Doing nothing for now
+                                    }
+                                }
+                            }
                         }
+
+
                     }
                 }
             }
@@ -339,19 +386,29 @@ let iterationCopy7 = (src,parent1,parent2,parent3,parent4,parent5,parent6) => {
                             }
                         }
 
-                        for(var i=0; i<whiteListedKeys.length; i++){
-                            if(prop.toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1 && typeof src[prop] !== 'function' &&  src[prop] !== undefined && src[prop] !== null && blackListedKeys.indexOf(prop) == -1){
-                                console.log('%c Found the whitelisted key: %c ' + whiteListedKeys[i] + ' %c at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+prop+' ',colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight)
-                                console.log(target)
-                            }
 
-                            if(src[prop] && typeof src[prop] === 'string'){
-                                if(src[prop].toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
-                                    console.log('%c Found the whitelisted value: %c ' + whiteListedKeys[i] + ' %c at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+prop+' ',colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                        for(var i=0; i<whiteListedKeys.length; i++){
+                            if(clovisSearchType == 'both' || clovisSearchType == 'keys'){
+                                if(prop.toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1 && typeof src[prop] !== 'function' &&  src[prop] !== undefined && src[prop] !== null && blackListedKeys.indexOf(prop) == -1){
+                                    console.log('%c Found the whitelisted key: %c ' + whiteListedKeys[i] + ' %c at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+prop+' ',colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight)
                                     console.log(target)
                                 }
                             }
+        
+                            if(clovisSearchType == 'both' || clovisSearchType == 'values'){
+                                if(src[prop]){
+                                    try{
+                                        if(JSON.stringify(src[prop]).toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
+                                            console.log('%c Found the whitelisted value: %c ' + whiteListedKeys[i] + ' %c at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+prop+' ',colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                                            console.log(target)
+                                        }
+                                    } catch(wlErr){
+                                        //Doing nothing for now
+                                    }
+                                }
+                            }
                         }
+
                     }
                 }
             }
@@ -411,18 +468,28 @@ let iterationCopy6 = (src,parent1,parent2,parent3,parent4,parent5) => {
                         }
 
                         for(var i=0; i<whiteListedKeys.length; i++){
-                            if(prop.toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1 && typeof src[prop] !== 'function' &&  src[prop] !== undefined && src[prop] !== null && blackListedKeys.indexOf(prop) == -1){
-                                console.log('%c Found the whitelisted key: %c ' + whiteListedKeys[i] + ' %c at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+prop+' ',colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight)
-                                console.log(target)
-                            }
-
-                            if(src[prop] && typeof src[prop] === 'string'){
-                                if(src[prop].toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
-                                    console.log('%c Found the whitelisted value: %c ' + whiteListedKeys[i] + ' %c at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+prop+' ',colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                            if(clovisSearchType == 'both' || clovisSearchType == 'keys'){
+                                if(prop.toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1 && typeof src[prop] !== 'function' &&  src[prop] !== undefined && src[prop] !== null && blackListedKeys.indexOf(prop) == -1){
+                                    console.log('%c Found the whitelisted key: %c ' + whiteListedKeys[i] + ' %c at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+prop+' ',colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight)
                                     console.log(target)
                                 }
                             }
-                        } 
+        
+                            if(clovisSearchType == 'both' || clovisSearchType == 'values'){
+                                if(src[prop]){
+                                    try{
+                                        if(JSON.stringify(src[prop]).toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
+                                            console.log('%c Found the whitelisted value: %c ' + whiteListedKeys[i] + ' %c at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+prop+' ',colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                                            console.log(target)
+                                        }
+                                    } catch(wlErr){
+                                        //Doing nothing for now
+                                    }
+                                }
+                            }
+                        }
+
+                    
                     }
                 }
             }
@@ -483,16 +550,26 @@ let iterationCopy5 = (src,parent1,parent2,parent3,parent4) => {
                             }
                         }
 
-                        for(var i=0; i<whiteListedKeys.length; i++){
-                            if(prop.toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1 && typeof src[prop] !== 'function' &&  src[prop] !== undefined && src[prop] !== null && blackListedKeys.indexOf(prop) == -1){
-                                console.log('%c Found the whitelisted key: %c ' + whiteListedKeys[i] + ' %c at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+prop+' ',colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight)
-                                console.log(target)
-                            }
 
-                            if(src[prop] && typeof src[prop] === 'string'){
-                                if(src[prop].toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
-                                    console.log('%c Found the whitelisted value: %c ' + whiteListedKeys[i] + ' %c at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+prop+' ',colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+
+                        for(var i=0; i<whiteListedKeys.length; i++){
+                            if(clovisSearchType == 'both' || clovisSearchType == 'keys'){
+                                if(prop.toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1 && typeof src[prop] !== 'function' &&  src[prop] !== undefined && src[prop] !== null && blackListedKeys.indexOf(prop) == -1){
+                                    console.log('%c Found the whitelisted key: %c ' + whiteListedKeys[i] + ' %c at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+prop+' ',colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight)
                                     console.log(target)
+                                }
+                            }
+        
+                            if(clovisSearchType == 'both' || clovisSearchType == 'values'){
+                                if(src[prop]){
+                                    try{
+                                        if(JSON.stringify(src[prop]).toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
+                                            console.log('%c Found the whitelisted value: %c ' + whiteListedKeys[i] + ' %c at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+prop+' ',colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                                            console.log(target)
+                                        }
+                                    } catch(wlErr){
+                                        //Doing nothing for now
+                                    }
                                 }
                             }
                         }
@@ -557,19 +634,29 @@ let iterationCopy4 = (src,parent1,parent2,parent3) => {
                             }
                         }
 
-                        for(var i=0; i<whiteListedKeys.length; i++){
-                            if(prop.toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1 && typeof src[prop] !== 'function' &&  src[prop] !== undefined && src[prop] !== null && blackListedKeys.indexOf(prop) == -1){
-                                console.log('%c Found the whitelisted key: %c ' + whiteListedKeys[i] + ' %c at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+prop+' ',colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight)
-                                console.log(target)
-                            }
 
-                            if(src[prop] && typeof src[prop] === 'string'){
-                                if(src[prop].toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
-                                    console.log('%c Found the whitelisted value: %c ' + whiteListedKeys[i] + ' %c at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+prop+' ',colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                        for(var i=0; i<whiteListedKeys.length; i++){
+                            if(clovisSearchType == 'both' || clovisSearchType == 'keys'){
+                                if(prop.toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1 && typeof src[prop] !== 'function' &&  src[prop] !== undefined && src[prop] !== null && blackListedKeys.indexOf(prop) == -1){
+                                    console.log('%c Found the whitelisted key: %c ' + whiteListedKeys[i] + ' %c at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+prop+' ',colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight)
                                     console.log(target)
                                 }
                             }
+        
+                            if(clovisSearchType == 'both' || clovisSearchType == 'values'){
+                                if(src[prop]){
+                                    try{
+                                        if(JSON.stringify(src[prop]).toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
+                                            console.log('%c Found the whitelisted value: %c ' + whiteListedKeys[i] + ' %c at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+prop+' ',colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                                            console.log(target)
+                                        }
+                                    } catch(wlErr){
+                                        //Doing nothing for now
+                                    }
+                                }
+                            }
                         }
+
                     }
                 }
             }
@@ -630,19 +717,29 @@ let iterationCopy3 = (src, parent1, parent2) => {
                             }
                         }
 
-                        for(var i=0; i<whiteListedKeys.length; i++){
-                            if(prop.toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1 && typeof src[prop] !== 'function' &&  src[prop] !== undefined && src[prop] !== null && blackListedKeys.indexOf(prop) == -1){
-                                console.log('%c Found the whitelisted key: %c ' + whiteListedKeys[i] + ' %c at %c window.'+parent1+'.'+parent2+'.'+prop+' ',colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight)
-                                console.log(target)
-                            }
 
-                            if(src[prop] && typeof src[prop] === 'string'){
-                                if(src[prop].toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
-                                    console.log('%c Found the whitelisted value: %c ' + whiteListedKeys[i] + ' %c at %c window.'+parent1+'.'+parent2+'.'+prop+' ',colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                        for(var i=0; i<whiteListedKeys.length; i++){
+                            if(clovisSearchType == 'both' || clovisSearchType == 'keys'){
+                                if(prop.toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1 && typeof src[prop] !== 'function' &&  src[prop] !== undefined && src[prop] !== null && blackListedKeys.indexOf(prop) == -1){
+                                    console.log('%c Found the whitelisted key: %c ' + whiteListedKeys[i] + ' %c at %c window.'+parent1+'.'+parent2+'.'+prop+' ',colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight)
                                     console.log(target)
                                 }
                             }
+        
+                            if(clovisSearchType == 'both' || clovisSearchType == 'values'){
+                                if(src[prop]){
+                                    try{
+                                        if(JSON.stringify(src[prop]).toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
+                                            console.log('%c Found the whitelisted value: %c ' + whiteListedKeys[i] + ' %c at %c window.'+parent1+'.'+parent2+'.'+prop+' ',colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                                            console.log(target)
+                                        }
+                                    } catch(wlErr){
+                                        //Doing nothing for now
+                                    }
+                                }
+                            }
                         }
+
                     }
                 }
             }
@@ -704,20 +801,28 @@ let iterationCopy2 = (src, parent1) => {
                             }
                         }
 
-
                         for(var i=0; i<whiteListedKeys.length; i++){
-                            if(prop.toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1 && typeof src[prop] !== 'function' &&  src[prop] !== undefined && src[prop] !== null && blackListedKeys.indexOf(prop) == -1){
-                                console.log('%c Found the whitelisted key: %c ' + whiteListedKeys[i] + ' %c at %c window.'+parent1+'.'+prop+' ',colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight)
-                                console.log(target)
-                            }
-
-                            if(src[prop] && typeof src[prop] === 'string'){
-                                if(src[prop].toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
-                                    console.log('%c Found the whitelisted value: %c ' + whiteListedKeys[i] + ' %c at %c window.'+parent1+'.'+prop+' ',colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                            if(clovisSearchType == 'both' || clovisSearchType == 'keys'){
+                                if(prop.toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1 && typeof src[prop] !== 'function' &&  src[prop] !== undefined && src[prop] !== null && blackListedKeys.indexOf(prop) == -1){
+                                    console.log('%c Found the whitelisted key: %c ' + whiteListedKeys[i] + ' %c at %c window.'+parent1+'.'+prop+' ',colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight)
                                     console.log(target)
                                 }
                             }
-                        } 
+        
+                            if(clovisSearchType == 'both' || clovisSearchType == 'values'){
+                                if(src[prop]){
+                                    try{
+                                        if(JSON.stringify(src[prop]).toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
+                                            console.log('%c Found the whitelisted value: %c ' + whiteListedKeys[i] + ' %c at %c window.'+parent1+'.'+prop+' ',colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                                            console.log(target)
+                                        }
+                                    } catch(wlErr){
+                                        //Doing nothing for now
+                                    }
+                                }
+                            }
+                        }
+
                     }
                 }
             }
@@ -778,21 +883,27 @@ let iterationCopy1 = (src) => {
 
         
                 for(var i=0; i<whiteListedKeys.length; i++){
-                    //console.log(whiteListedKeys[i])
-                    if(typeof whiteListedKeys[i] === 'string'){
+                    if(clovisSearchType == 'both' || clovisSearchType == 'keys'){
                         if(prop.toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1 && typeof src[prop] !== 'function' &&  src[prop] !== undefined && src[prop] !== null && blackListedKeys.indexOf(prop) == -1){
                             console.log('%c Found the whitelisted value: %c ' + whiteListedKeys[i] + ' %c at %c window.' + prop,colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight);
                             console.log(target);
                         }
+                    }
 
-                        if(src[prop] && typeof src[prop] === 'string'){
-                            if(src[prop].toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
-                                console.log('%c Found the whitelisted value: %c ' + whiteListedKeys[i] + ' %c at %c window.' + prop,colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight);
-                                console.log(target);
+                    if(clovisSearchType == 'both' || clovisSearchType == 'values'){
+                        if(src[prop]){
+                            try{
+                                if(JSON.stringify(src[prop]).toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
+                                    console.log('%c Found the whitelisted value: %c ' + whiteListedKeys[i] + ' %c at %c window.' + prop,colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight);
+                                    console.log(target);
+                                }
+                            } catch(wlErr){
+                                //Doing nothing for now
                             }
                         }
                     }
                 }
+
             }
         }
 
@@ -826,6 +937,13 @@ function grabCookies(){
             } else {
                 allCookiesObject[allCookiesArray[c].split('=')[0]] = allCookiesArray[c].split('=')[1];
             }
+
+            for(var i=0; i<whiteListedKeys.length; i++){
+                if(allCookiesArray[c].toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
+                    console.log('%c Found the whitelisted term: %c ' + whiteListedKeys[i] + ' %c in the cookies: %c '+allCookiesArray[c],colorCodeMain,colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                }
+            }
+
         }
 
 
@@ -838,12 +956,17 @@ function grabCookies(){
     }
 }
 
+//Grab all objects
 var masterObject = iterationCopy1(window);
+
+//Grab all cookies
+var allCookiesObj = grabCookies();
+
+//Log all objects
 console.log('%c All Usable Objects (prepend them with window.) ',colorCodeMaster);
 console.log(masterObject);
 
-
-var allCookiesObj = grabCookies();
+//Log all cookies
 console.log('%c All Usable Cookies ',colorCodeCookies);
 console.log(allCookiesObj);
 
