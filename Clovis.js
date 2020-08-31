@@ -153,7 +153,7 @@ let iterationCopy10 = (src,parent1,parent2,parent3,parent4,parent5,parent6,paren
                         for(var i=0; i<whiteListedKeys.length; i++){
                             if(clovisSearchType == 'both' || clovisSearchType == 'keys'){
                                 if(prop.toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1 && typeof src[prop] !== 'function' &&  src[prop] !== undefined && src[prop] !== null && blackListedKeys.indexOf(prop) == -1){
-                                    console.log('%c ' + whiteListedKeys[i] + ' %c variable found at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+parent7+'.'+parent8+'.'+parent9+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                                    console.log('%c ' + whiteListedKeys[i] + ' %c found in keys at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+parent7+'.'+parent8+'.'+parent9+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
                                     console.log(target)
                                 }
                             }
@@ -162,7 +162,7 @@ let iterationCopy10 = (src,parent1,parent2,parent3,parent4,parent5,parent6,paren
                                 if(src[prop]){
                                     try{
                                         if(JSON.stringify(src[prop]).toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
-                                            console.log('%c ' + whiteListedKeys[i] + ' %c variable found at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+parent7+'.'+parent8+'.'+parent9+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                                            console.log('%c ' + whiteListedKeys[i] + ' %c found in values at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+parent7+'.'+parent8+'.'+parent9+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
                                             console.log(target)
                                         }
                                     } catch(wlErr){
@@ -233,7 +233,7 @@ let iterationCopy9 = (src,parent1,parent2,parent3,parent4,parent5,parent6,parent
                         for(var i=0; i<whiteListedKeys.length; i++){
                             if(clovisSearchType == 'both' || clovisSearchType == 'keys'){
                                 if(prop.toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1 && typeof src[prop] !== 'function' &&  src[prop] !== undefined && src[prop] !== null && blackListedKeys.indexOf(prop) == -1){
-                                    console.log('%c ' + whiteListedKeys[i] + ' %c variable found at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+parent7+'.'+parent8+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                                    console.log('%c ' + whiteListedKeys[i] + ' %c found in keys at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+parent7+'.'+parent8+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
                                     console.log(target)
                                 }
                             }
@@ -242,7 +242,7 @@ let iterationCopy9 = (src,parent1,parent2,parent3,parent4,parent5,parent6,parent
                                 if(src[prop]){
                                     try{
                                         if(JSON.stringify(src[prop]).toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
-                                            console.log('%c ' + whiteListedKeys[i] + ' %c variable found at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+parent7+'.'+parent8+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                                            console.log('%c ' + whiteListedKeys[i] + ' %c found in values at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+parent7+'.'+parent8+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
                                             console.log(target)
                                         }
                                     } catch(wlErr){
@@ -314,7 +314,7 @@ let iterationCopy8 = (src,parent1,parent2,parent3,parent4,parent5,parent6,parent
                         for(var i=0; i<whiteListedKeys.length; i++){
                             if(clovisSearchType == 'both' || clovisSearchType == 'keys'){
                                 if(prop.toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1 && typeof src[prop] !== 'function' &&  src[prop] !== undefined && src[prop] !== null && blackListedKeys.indexOf(prop) == -1){
-                                    console.log('%c ' + whiteListedKeys[i] + ' %c variable found at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+parent7+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                                    console.log('%c ' + whiteListedKeys[i] + ' %c found in keys at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+parent7+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
                                     console.log(target)
                                 }
                             }
@@ -323,7 +323,7 @@ let iterationCopy8 = (src,parent1,parent2,parent3,parent4,parent5,parent6,parent
                                 if(src[prop]){
                                     try{
                                         if(JSON.stringify(src[prop]).toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
-                                            console.log('%c ' + whiteListedKeys[i] + ' %c variable found at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+parent7+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                                            console.log('%c ' + whiteListedKeys[i] + ' %c found in values at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+parent7+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
                                             console.log(target)
                                         }
                                     } catch(wlErr){
@@ -396,7 +396,7 @@ let iterationCopy7 = (src,parent1,parent2,parent3,parent4,parent5,parent6) => {
                         for(var i=0; i<whiteListedKeys.length; i++){
                             if(clovisSearchType == 'both' || clovisSearchType == 'keys'){
                                 if(prop.toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1 && typeof src[prop] !== 'function' &&  src[prop] !== undefined && src[prop] !== null && blackListedKeys.indexOf(prop) == -1){
-                                    console.log('%c ' + whiteListedKeys[i] + ' %c variable found at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                                    console.log('%c ' + whiteListedKeys[i] + ' %c found in keys at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
                                     console.log(target)
                                 }
                             }
@@ -405,7 +405,7 @@ let iterationCopy7 = (src,parent1,parent2,parent3,parent4,parent5,parent6) => {
                                 if(src[prop]){
                                     try{
                                         if(JSON.stringify(src[prop]).toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
-                                            console.log('%c ' + whiteListedKeys[i] + ' %c variable found at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                                            console.log('%c ' + whiteListedKeys[i] + ' %c found in values at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
                                             console.log(target)
                                         }
                                     } catch(wlErr){
@@ -476,7 +476,7 @@ let iterationCopy6 = (src,parent1,parent2,parent3,parent4,parent5) => {
                         for(var i=0; i<whiteListedKeys.length; i++){
                             if(clovisSearchType == 'both' || clovisSearchType == 'keys'){
                                 if(prop.toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1 && typeof src[prop] !== 'function' &&  src[prop] !== undefined && src[prop] !== null && blackListedKeys.indexOf(prop) == -1){
-                                    console.log('%c ' + whiteListedKeys[i] + ' %c variable found at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                                    console.log('%c ' + whiteListedKeys[i] + ' %c found in keys at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
                                     console.log(target)
                                 }
                             }
@@ -485,7 +485,7 @@ let iterationCopy6 = (src,parent1,parent2,parent3,parent4,parent5) => {
                                 if(src[prop]){
                                     try{
                                         if(JSON.stringify(src[prop]).toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
-                                            console.log('%c ' + whiteListedKeys[i] + ' %c variable found at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                                            console.log('%c ' + whiteListedKeys[i] + ' %c found in values at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
                                             console.log(target)
                                         }
                                     } catch(wlErr){
@@ -561,7 +561,7 @@ let iterationCopy5 = (src,parent1,parent2,parent3,parent4) => {
                         for(var i=0; i<whiteListedKeys.length; i++){
                             if(clovisSearchType == 'both' || clovisSearchType == 'keys'){
                                 if(prop.toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1 && typeof src[prop] !== 'function' &&  src[prop] !== undefined && src[prop] !== null && blackListedKeys.indexOf(prop) == -1){
-                                    console.log('%c ' + whiteListedKeys[i] + ' %c variable found at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                                    console.log('%c ' + whiteListedKeys[i] + ' %c found in keys at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
                                     console.log(target)
                                 }
                             }
@@ -570,7 +570,7 @@ let iterationCopy5 = (src,parent1,parent2,parent3,parent4) => {
                                 if(src[prop]){
                                     try{
                                         if(JSON.stringify(src[prop]).toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
-                                            console.log('%c ' + whiteListedKeys[i] + ' %c variable found at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                                            console.log('%c ' + whiteListedKeys[i] + ' %c found in values at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
                                             console.log(target)
                                         }
                                     } catch(wlErr){
@@ -644,7 +644,7 @@ let iterationCopy4 = (src,parent1,parent2,parent3) => {
                         for(var i=0; i<whiteListedKeys.length; i++){
                             if(clovisSearchType == 'both' || clovisSearchType == 'keys'){
                                 if(prop.toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1 && typeof src[prop] !== 'function' &&  src[prop] !== undefined && src[prop] !== null && blackListedKeys.indexOf(prop) == -1){
-                                    console.log('%c ' + whiteListedKeys[i] + ' %c variable found at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                                    console.log('%c ' + whiteListedKeys[i] + ' %c found in keys at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
                                     console.log(target)
                                 }
                             }
@@ -653,7 +653,7 @@ let iterationCopy4 = (src,parent1,parent2,parent3) => {
                                 if(src[prop]){
                                     try{
                                         if(JSON.stringify(src[prop]).toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
-                                            console.log('%c ' + whiteListedKeys[i] + ' %c variable found at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                                            console.log('%c ' + whiteListedKeys[i] + ' %c found in values at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
                                             console.log(target)
                                         }
                                     } catch(wlErr){
@@ -727,7 +727,7 @@ let iterationCopy3 = (src, parent1, parent2) => {
                         for(var i=0; i<whiteListedKeys.length; i++){
                             if(clovisSearchType == 'both' || clovisSearchType == 'keys'){
                                 if(prop.toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1 && typeof src[prop] !== 'function' &&  src[prop] !== undefined && src[prop] !== null && blackListedKeys.indexOf(prop) == -1){
-                                    console.log('%c ' + whiteListedKeys[i] + ' %c variable found at %c window.'+parent1+'.'+parent2+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                                    console.log('%c ' + whiteListedKeys[i] + ' %c found in keys at %c window.'+parent1+'.'+parent2+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
                                     console.log(target)
                                 }
                             }
@@ -736,7 +736,7 @@ let iterationCopy3 = (src, parent1, parent2) => {
                                 if(src[prop]){
                                     try{
                                         if(JSON.stringify(src[prop]).toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
-                                            console.log('%c ' + whiteListedKeys[i] + ' %c variable found at %c window.'+parent1+'.'+parent2+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                                            console.log('%c ' + whiteListedKeys[i] + ' %c found in values at %c window.'+parent1+'.'+parent2+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
                                             console.log(target)
                                         }
                                     } catch(wlErr){
@@ -810,7 +810,7 @@ let iterationCopy2 = (src, parent1) => {
                         for(var i=0; i<whiteListedKeys.length; i++){
                             if(clovisSearchType == 'both' || clovisSearchType == 'keys'){
                                 if(prop.toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1 && typeof src[prop] !== 'function' &&  src[prop] !== undefined && src[prop] !== null && blackListedKeys.indexOf(prop) == -1){
-                                    console.log('%c ' + whiteListedKeys[i] + ' %c variable found at %c window.'+parent1+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                                    console.log('%c ' + whiteListedKeys[i] + ' %c found in keys at %c window.'+parent1+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
                                     console.log(target)
                                 }
                             }
@@ -819,7 +819,7 @@ let iterationCopy2 = (src, parent1) => {
                                 if(src[prop]){
                                     try{
                                         if(JSON.stringify(src[prop]).toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
-                                            console.log('%c ' + whiteListedKeys[i] + ' %c variable found at %c window.'+parent1+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                                            console.log('%c ' + whiteListedKeys[i] + ' %c found in values at %c window.'+parent1+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
                                             console.log(target)
                                         }
                                     } catch(wlErr){
@@ -891,7 +891,7 @@ let iterationCopy1 = (src) => {
                 for(var i=0; i<whiteListedKeys.length; i++){
                     if(clovisSearchType == 'both' || clovisSearchType == 'keys'){
                         if(prop.toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1 && typeof src[prop] !== 'function' &&  src[prop] !== undefined && src[prop] !== null && blackListedKeys.indexOf(prop) == -1){
-                            console.log('%c ' + whiteListedKeys[i] + ' %c variable found at %c window.' + prop,colorCodeHighlight,colorCodeMain,colorCodeHighlight);
+                            console.log('%c ' + whiteListedKeys[i] + ' %c found in keys at %c window.' + prop,colorCodeHighlight,colorCodeMain,colorCodeHighlight);
                             console.log(target);
                         }
                     }
@@ -900,7 +900,7 @@ let iterationCopy1 = (src) => {
                         if(src[prop]){
                             try{
                                 if(JSON.stringify(src[prop]).toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
-                                    console.log('%c ' + whiteListedKeys[i] + ' %c variable found at %c window.' + prop,colorCodeHighlight,colorCodeMain,colorCodeHighlight);
+                                    console.log('%c ' + whiteListedKeys[i] + ' %c found in values at %c window.' + prop,colorCodeHighlight,colorCodeMain,colorCodeHighlight);
                                     console.log(target);
                                 }
                             } catch(wlErr){
