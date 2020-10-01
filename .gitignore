@@ -9,8 +9,8 @@
 # Custom
 .zip/**
 .idea/**
-./clovis.min.js
-clovis.min.js
+./Clovis.js
+Clovis.js
 
 # User-specific stuff
 .idea/**/workspace.xml
