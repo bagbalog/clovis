@@ -1,0 +1,16 @@
+{
+  "name": "clovis",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Clovis.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "uglifyjs Clovis.js -o clovis.min.js -c -m"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@bitbucket.lab.dynatrace.org/bus/clovis.git"
+  },
+  "author": "",
+  "license": "ISC"
+}
