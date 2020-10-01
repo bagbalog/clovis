@@ -11,6 +11,8 @@
 .idea/**
 ./Clovis.js
 Clovis.js
+./bookmarklet.js
+bookmarklet.js
 
 # User-specific stuff
 .idea/**/workspace.xml
