@@ -1,0 +1,1 @@
+javascript:void function(){let s = document.createElement("script");s.setAttribute("src", "https://cdn.jsdelivr.net/gh/bagbalog/clovis@Release/clovis.min.js");s.setAttribute("crossorigin", "anonymous");document.body.appendChild(s);}();
