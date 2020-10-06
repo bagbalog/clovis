@@ -241,9 +241,16 @@ let iterationCopy9 = (src,parent1,parent2,parent3,parent4,parent5,parent6,parent
                             if(clovisSearchType == 'both' || clovisSearchType == 'values'){
                                 if(src[prop]){
                                     try{
-                                        if(JSON.stringify(src[prop]).toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
-                                            console.log('%c ' + whiteListedKeys[i] + ' %c found in values at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+parent7+'.'+parent8+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
-                                            console.log(target)
+                                        if(!src[prop] instanceof Object){
+                                            if(JSON.stringify(src[prop]).toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
+                                                console.log('%c ' + whiteListedKeys[i] + ' %c found in values at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+parent7+'.'+parent8+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                                                console.log(target)
+                                            }
+                                        } else if (globalIterationValue == 9){
+                                            if(JSON.stringify(src[prop]).toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
+                                                console.log('%c ' + whiteListedKeys[i] + ' %c found in values at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+parent7+'.'+parent8+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                                                console.log(target);
+                                            }          
                                         }
                                     } catch(wlErr){
                                         //Doing nothing for now
@@ -322,9 +329,16 @@ let iterationCopy8 = (src,parent1,parent2,parent3,parent4,parent5,parent6,parent
                             if(clovisSearchType == 'both' || clovisSearchType == 'values'){
                                 if(src[prop]){
                                     try{
-                                        if(JSON.stringify(src[prop]).toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
-                                            console.log('%c ' + whiteListedKeys[i] + ' %c found in values at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+parent7+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
-                                            console.log(target)
+                                        if(!src[prop] instanceof Object){
+                                            if(JSON.stringify(src[prop]).toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
+                                                console.log('%c ' + whiteListedKeys[i] + ' %c found in values at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+parent7+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                                                console.log(target)
+                                            }
+                                        } else if (globalIterationValue == 8){
+                                            if(JSON.stringify(src[prop]).toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
+                                                console.log('%c ' + whiteListedKeys[i] + ' %c found in values at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+parent7+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                                                console.log(target);
+                                            }          
                                         }
                                     } catch(wlErr){
                                         //Doing nothing for now
@@ -404,9 +418,16 @@ let iterationCopy7 = (src,parent1,parent2,parent3,parent4,parent5,parent6) => {
                             if(clovisSearchType == 'both' || clovisSearchType == 'values'){
                                 if(src[prop]){
                                     try{
-                                        if(JSON.stringify(src[prop]).toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
-                                            console.log('%c ' + whiteListedKeys[i] + ' %c found in values at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
-                                            console.log(target)
+                                        if(!src[prop] instanceof Object){
+                                            if(JSON.stringify(src[prop]).toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
+                                                console.log('%c ' + whiteListedKeys[i] + ' %c found in values at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                                                console.log(target)
+                                            }
+                                        } else if (globalIterationValue == 7){
+                                            if(JSON.stringify(src[prop]).toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
+                                                console.log('%c ' + whiteListedKeys[i] + ' %c found in values at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+parent6+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                                                console.log(target);
+                                            }          
                                         }
                                     } catch(wlErr){
                                         //Doing nothing for now
@@ -484,9 +505,16 @@ let iterationCopy6 = (src,parent1,parent2,parent3,parent4,parent5) => {
                             if(clovisSearchType == 'both' || clovisSearchType == 'values'){
                                 if(src[prop]){
                                     try{
-                                        if(JSON.stringify(src[prop]).toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
-                                            console.log('%c ' + whiteListedKeys[i] + ' %c found in values at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
-                                            console.log(target)
+                                        if(!src[prop] instanceof Object){
+                                            if(JSON.stringify(src[prop]).toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
+                                                console.log('%c ' + whiteListedKeys[i] + ' %c found in values at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                                                console.log(target)
+                                            }
+                                        } else if (globalIterationValue == 6){
+                                            if(JSON.stringify(src[prop]).toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
+                                                console.log('%c ' + whiteListedKeys[i] + ' %c found in values at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+parent5+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                                                console.log(target);
+                                            }          
                                         }
                                     } catch(wlErr){
                                         //Doing nothing for now
@@ -569,9 +597,16 @@ let iterationCopy5 = (src,parent1,parent2,parent3,parent4) => {
                             if(clovisSearchType == 'both' || clovisSearchType == 'values'){
                                 if(src[prop]){
                                     try{
-                                        if(JSON.stringify(src[prop]).toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
-                                            console.log('%c ' + whiteListedKeys[i] + ' %c found in values at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
-                                            console.log(target)
+                                        if(!src[prop] instanceof Object){
+                                            if(JSON.stringify(src[prop]).toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
+                                                console.log('%c ' + whiteListedKeys[i] + ' %c found in values at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                                                console.log(target)
+                                            }
+                                        } else if (globalIterationValue == 5){
+                                            if(JSON.stringify(src[prop]).toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
+                                                console.log('%c ' + whiteListedKeys[i] + ' %c found in values at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+parent4+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                                                console.log(target);
+                                            }          
                                         }
                                     } catch(wlErr){
                                         //Doing nothing for now
@@ -652,9 +687,16 @@ let iterationCopy4 = (src,parent1,parent2,parent3) => {
                             if(clovisSearchType == 'both' || clovisSearchType == 'values'){
                                 if(src[prop]){
                                     try{
-                                        if(JSON.stringify(src[prop]).toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
-                                            console.log('%c ' + whiteListedKeys[i] + ' %c found in values at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
-                                            console.log(target)
+                                        if(!src[prop] instanceof Object){
+                                            if(JSON.stringify(src[prop]).toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
+                                                console.log('%c ' + whiteListedKeys[i] + ' %c found in values at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                                                console.log(target)
+                                            }
+                                        } else if (globalIterationValue == 4){
+                                            if(JSON.stringify(src[prop]).toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
+                                                console.log('%c ' + whiteListedKeys[i] + ' %c found in values at %c window.'+parent1+'.'+parent2+'.'+parent3+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                                                console.log(target);
+                                            }          
                                         }
                                     } catch(wlErr){
                                         //Doing nothing for now
@@ -735,9 +777,16 @@ let iterationCopy3 = (src, parent1, parent2) => {
                             if(clovisSearchType == 'both' || clovisSearchType == 'values'){
                                 if(src[prop]){
                                     try{
-                                        if(JSON.stringify(src[prop]).toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
-                                            console.log('%c ' + whiteListedKeys[i] + ' %c found in values at %c window.'+parent1+'.'+parent2+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
-                                            console.log(target)
+                                        if(!src[prop] instanceof Object){
+                                            if(JSON.stringify(src[prop]).toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
+                                                console.log('%c ' + whiteListedKeys[i] + ' %c found in values at %c window.'+parent1+'.'+parent2+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                                                console.log(target)
+                                            }
+                                        } else if (globalIterationValue == 3){
+                                            if(JSON.stringify(src[prop]).toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
+                                                console.log('%c ' + whiteListedKeys[i] + ' %c found in values at %c window.'+parent1+'.'+parent2+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                                                console.log(target);
+                                            }          
                                         }
                                     } catch(wlErr){
                                         //Doing nothing for now
@@ -818,9 +867,16 @@ let iterationCopy2 = (src, parent1) => {
                             if(clovisSearchType == 'both' || clovisSearchType == 'values'){
                                 if(src[prop]){
                                     try{
-                                        if(JSON.stringify(src[prop]).toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
-                                            console.log('%c ' + whiteListedKeys[i] + ' %c found in values at %c window.'+parent1+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
-                                            console.log(target)
+                                        if(!src[prop] instanceof Object){
+                                            if(JSON.stringify(src[prop]).toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
+                                                console.log('%c ' + whiteListedKeys[i] + ' %c found in values at %c window.'+parent1+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                                                console.log(target)
+                                            }
+                                        } else if (globalIterationValue == 2){
+                                            if(JSON.stringify(src[prop]).toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
+                                                console.log('%c ' + whiteListedKeys[i] + ' %c found in values at %c window.'+parent1+'.'+prop+' ',colorCodeHighlight,colorCodeMain,colorCodeHighlight)
+                                                console.log(target);
+                                            }          
                                         }
                                     } catch(wlErr){
                                         //Doing nothing for now
@@ -853,6 +909,7 @@ let iterationCopy1 = (src) => {
     try{
         for(let prop in src) {
             if(blackListedKeys.indexOf(prop) == -1 && blackListedKeys.indexOf(src[prop]) == -1){
+                
                 if(typeof src[prop] === 'function'){
                     continue;
                 }
@@ -899,10 +956,18 @@ let iterationCopy1 = (src) => {
                     if(clovisSearchType == 'both' || clovisSearchType == 'values'){
                         if(src[prop]){
                             try{
-                                if(JSON.stringify(src[prop]).toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
-                                    console.log('%c ' + whiteListedKeys[i] + ' %c found in values at %c window.' + prop,colorCodeHighlight,colorCodeMain,colorCodeHighlight);
-                                    console.log(target);
+                                if(!src[prop] instanceof Object){
+                                    if(JSON.stringify(src[prop]).toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
+                                        console.log('%c ' + whiteListedKeys[i] + ' %c found in values at %c window.' + prop,colorCodeHighlight,colorCodeMain,colorCodeHighlight);
+                                        console.log(target);
+                                    }  
+                                } else if (globalIterationValue == 1){
+                                    if(JSON.stringify(src[prop]).toLowerCase().indexOf(whiteListedKeys[i].toLowerCase()) > -1){
+                                        console.log('%c ' + whiteListedKeys[i] + ' %c found in values at %c window.' + prop,colorCodeHighlight,colorCodeMain,colorCodeHighlight);
+                                        console.log(target);
+                                    }          
                                 }
+
                             } catch(wlErr){
                                 //Doing nothing for now
                             }
